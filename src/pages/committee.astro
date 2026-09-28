@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CommitteeAvatar from '../components/CommitteeAvatar.astro';
+
+const order = [
+  'President',
+  'Vice-President',
+  'Treasurer',
+  'Secretary',
+  'Academic Events Coordinator',
+  'Welfare Officer',
+];
+const committee = (await getCollection('committee')).sort(
+  (a, b) => order.indexOf(a.data.role) - order.indexOf(b.data.role),
+);
+const previous = await getCollection('previousCommittees');
+---
+
+<Base
+  title="Committee"
+  description="The 2026/27 office-bearers of the Glasgow University Neuroscience Society (GU NeuroSoc), and how office-bearers are elected at the AGM."
+>
+  <div class="container-site section">
+    <h1 class="headline text-h1">Committee</h1>
+
+    <section aria-labelledby="current-heading" class="mt-12">
+      <h2 id="current-heading" class="font-display text-h2 font-extrabold uppercase">2026/27 committee</h2>
+      <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+        {
+          committee.map(({ data }, i) => (
+            <li class="card flex flex-col gap-4">
+              <figure class="flex items-center gap-4">
+                <CommitteeAvatar index={i} />
+                <figcaption class="text-sm text-text-muted">Photo coming soon</figcaption>
+              </figure>
+              <div>
+                <h3 class="font-display text-h3 font-extrabold">{data.role}</h3>
+                <p class="mt-1 font-semibold">{data.name}</p>
+                <p class="mt-3">
+                  <span class="text-text-muted">Course / year:</span> {data.courseYear}
+                </p>
+                <p class="mt-1">
+                  <span class="text-text-muted">Ask me about:</span> {data.askMeAbout}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section aria-labelledby="join-heading" class="prose-site mt-16">
+      <h2 id="join-heading">Join the committee</h2>
+      <p>
+        Office-bearers are elected at the society's AGM by secret ballot. The AGM is announced at least 10 working
+        days in advance, by email and on social media.
+      </p>
+      <p>
+        Free AGM tickets are released on the SRC page, so that only members attend. Any full member may stand for
+        election.
+      </p>
+      <p>
+        Full membership is for registered University of Glasgow students. Associate membership is for non-students
+        and has no voting rights. See <a href="/join">how to join</a> and the <a href="/constitution">constitution</a>.
+      </p>
+    </section>
+
+    <section aria-labelledby="previous-heading" class="mt-16">
+      <h2 id="previous-heading" class="font-display text-h2 font-extrabold uppercase">Previous committees</h2>
+      {
+        previous.length === 0 ? (
+          <p class="mt-4 text-text-muted">Previous committees will be listed here.</p>
+        ) : (
+          previous.map(({ data }) => (
+            <div class="mt-8">
+              <h3 class="font-display text-h3 font-extrabold">{data.year}</h3>
+              <ul class="mt-3 space-y-1" role="list">
+                {data.members.map((m) => (
+                  <li>
+                    <span class="text-text-muted">{m.role}:</span> {m.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        )
+      }
+    </section>
+  </div>
+</Base>
