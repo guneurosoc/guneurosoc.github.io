@@ -11,7 +11,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "video:build": "node scripts/build-video.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -20,11 +21,13 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "ffmpeg-static": "^5.3.0",
     "typescript": "^6.0.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild"
+      "esbuild",
+      "ffmpeg-static"
     ]
   }
 }

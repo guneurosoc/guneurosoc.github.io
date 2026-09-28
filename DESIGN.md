@@ -188,6 +188,7 @@ The pip / fonttools route was not available: there was no pip or ensurepip in th
   - Export `favicon.ico` (16, 32, 48) and `apple-touch-icon.png` (180).
   - No SVG favicon, because that would mean redrawing the logo.
   - No 192/512 manifest icons, because they would upscale beyond the 375 px source.
+  - Built 2026-09-29: `public/favicon.ico` (16/32/48, PNG-in-ICO), `public/favicon-32.png`, `public/apple-touch-icon.png` (180). Crop box used: x 50–320, y 28–298 (270 px square centred on the brain, flattened on white, Lanczos downscale only).
 
 ## 5. Motion principles
 

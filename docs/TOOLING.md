@@ -16,7 +16,7 @@ Sources: commands run by the lead session and by the tooling subagent on 2026-09
 | npm | 12.0.2 | `npm -v` |
 | corepack | 0.35.0 | `corepack -v` |
 | pnpm | 10.34.6, run as `npx -y pnpm@10.34.6` with `npm_config_cache` and `XDG_*_HOME` pointed at `$TMPDIR` (`packageManager` in package.json). Not installed globally. corepack fails in the sandbox (its fetch bypasses the proxy: `getaddrinfo EAI_AGAIN registry.npmjs.org`); pnpm 12.6.0 fails with `ERR_PNPM_STORE_DIR_OPEN_OPERATION_LOCK ... Read-only file system`. | scaffold subagent, 2026-09-29 |
-| ffmpeg | Not installed (`ffmpeg: command not found`) | `ffmpeg -version` |
+| ffmpeg | Not on PATH. `ffmpeg-static` 5.3.0 devDependency (binary tag b6.1.1, reports `ffmpeg version 7.0.2-static`). Its install script got HTTP 407 from the sandbox proxy, so the binary was fetched with curl into `node_modules/.pnpm/ffmpeg-static@5.3.0/node_modules/ffmpeg-static/ffmpeg`; a normal `pnpm install` outside the sandbox is expected to download it itself (unverified). | video subagent, 2026-09-29 |
 | skills CLI (skills.sh) | 1.7.0, run through `npx -y skills` (not installed globally) | version in the npx cache `package.json` |
 
 ## Site stack (from `pnpm list --depth 0` after scaffold)

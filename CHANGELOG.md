@@ -9,3 +9,4 @@
 - Phase 1 partial: Astro 7.3.5 + Tailwind 4.3.3 scaffold (pnpm 10.34.6), 13 project skills installed (8 GSAP, 4 Open Design kept), docs/TOOLING.md. Verified: astro check 0 errors, build 1 page.
 - Phase 3 (early): asset-scout sourced brain.glb (CC BY 4.0, dgallichan via NIH 3D, simplified to 75k tris, 1.58 MB) and 3 Animated Noto Emoji Lotties (CC BY 4.0); brand/ASSETS.md written. Verified: file/ls/JSON parse.
 - Phase 1 complete: brand-designer wrote DESIGN.md, src/styles/tokens.css (Tailwind v4 @theme + dark/light semantic tokens), public/fonts (5 WOFF2 + OFL), docs/swatches.html. Verified: build clean, 5 @font-face + brand hexes in dist CSS, contrast claims spot-checked.
+- Phase 2 (early): join video pipeline — ffmpeg-static, scripts/build-video.mjs (`pnpm video:build`), public/video/how-to-join.{mp4 1,867,429 B, webm, vtt 7 cues, poster.jpg}, docs/VIDEO.md. Verified: file/stat/grep, build passes.
