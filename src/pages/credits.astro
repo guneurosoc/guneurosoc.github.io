@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+
+// From brand/ASSETS.md ("Required attribution text" column), verbatim.
+const ccBy = 'https://creativecommons.org/licenses/by/4.0/';
+const notoUrl = 'https://googlefonts.github.io/noto-emoji-animation/';
+const noto = (name: string) => ({
+  title: `${name} animated emoji`,
+  lead: `${name} animated emoji from Animated Noto Emoji by Google`,
+  source: notoUrl,
+  after: '',
+});
+const assets = [
+  {
+    title: 'Brain (3D model)',
+    lead: '"Brain" by dgallichan',
+    source: 'https://sketchfab.com/3d-models/brain-cadd2bde67404c43b2359a6a3281d84a',
+    after: ' Simplified and compressed for the web by GU NeuroSoc.',
+  },
+  noto('Brain'),
+  noto('High voltage'),
+  noto('Sparkles'),
+];
+
+// Holders from public/fonts/*-OFL.txt; years dropped (no pre-2026 dates on the site), the linked .txt carries the full notice.
+const fonts = [
+  { name: 'Unbounded', copyright: 'The Unbounded Project Authors, SIL Open Font License 1.1', url: 'https://github.com/googlefonts/unbounded', file: '/fonts/Unbounded-OFL.txt' },
+  { name: 'Poppins', copyright: 'The Poppins Project Authors, SIL Open Font License 1.1', url: 'https://github.com/itfoundry/Poppins', file: '/fonts/Poppins-OFL.txt' },
+  { name: 'Archivo Black', copyright: 'The Archivo Black Project Authors, SIL Open Font License 1.1', url: 'https://github.com/Omnibus-Type/ArchivoBlack', file: '/fonts/ArchivoBlack-OFL.txt' },
+];
+
+// package.json dependencies; licence read from node_modules/<pkg>/package.json "license" on 2026-09-29.
+const software = [
+  ['astro', 'MIT'],
+  ['tailwindcss', 'MIT'],
+  ['@tailwindcss/vite', 'MIT'],
+  ['@astrojs/sitemap', 'MIT'],
+  ['@astrojs/check', 'MIT'],
+  ['typescript', 'Apache-2.0'],
+  ['ffmpeg-static', 'GPL-3.0-or-later'],
+];
+---
+
+<Base
+  title="Credits"
+  description="Credits and licences for the third-party assets, fonts and software used on the GU NeuroSoc website."
+>
+  <article class="container-site section">
+    <h1 class="headline text-h1 font-black">Credits</h1>
+    <div class="prose-site mt-8">
+      <p>
+        This site uses work by other people under open licences. The licence records are kept in
+        the site's repository.
+      </p>
+
+      <h2>Assets</h2>
+      {
+        assets.map((a) => (
+          <>
+            <h3>{a.title}</h3>
+            <p>
+              {a.lead} (<a href={a.source}>{a.source}</a>), licensed under CC BY 4.0 (<a href={ccBy}>{ccBy}</a>).{a.after}
+            </p>
+          </>
+        ))
+      }
+
+      <h2>Fonts</h2>
+      <p>
+        All fonts are licensed under the SIL Open Font License 1.1 (<a href="https://openfontlicense.org">https://openfontlicense.org</a>).
+      </p>
+      {
+        fonts.map((f) => (
+          <>
+            <h3>{f.name}</h3>
+            <p>
+              {f.copyright} (<a href={f.url}>{f.url}</a>). <a href={f.file}>Licence text for {f.name}</a>.
+            </p>
+          </>
+        ))
+      }
+
+      <h2>Software</h2>
+      <ul>
+        {
+          software.map(([name, licence]) => (
+            <li>
+              <code>{name}</code>: {licence}
+            </li>
+          ))
+        }
+      </ul>
+      <p>Motion libraries will be listed here when they are added.</p>
+    </div>
+  </article>
+</Base>

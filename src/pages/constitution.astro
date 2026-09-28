@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+
+/*
+ * TODO (fallback page): content/ holds no constitution yet.
+ * When content/constitution.md or content/constitution.docx appears, this page should render the
+ * constitution VERBATIM (never paraphrased or summarised), with a table of contents built from its
+ * headings and download links to the source files, and keep the adoption date line.
+ * No docx renderer is built yet.
+ */
+---
+
+<Base
+  title="Constitution"
+  description="The constitution of the Glasgow University Neuroscience Society, adopted/amended 14 August 2026."
+>
+  <article class="container-site section">
+    <h1 class="headline text-h1 font-black">Constitution</h1>
+    <div class="prose-site mt-8">
+      <p>Adopted/amended 14 August 2026.</p>
+      <p>The full text of the constitution will be published on this page.</p>
+    </div>
+    <p class="mt-6">
+      <span class="btn-secondary cursor-not-allowed hover:bg-transparent">{'{{CONSTITUTION_DOWNLOAD}}'}</span>
+    </p>
+  </article>
+</Base>

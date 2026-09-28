@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Complaints"
+  description="How to make a complaint to GU NeuroSoc: write to neurosciencesoc@src.gla.ac.uk, and what happens next."
+>
+  <article class="container-site section">
+    <h1 class="headline text-h1 font-black">Complaints</h1>
+    <div class="prose-site mt-8">
+      <h2>How to complain</h2>
+      <p>
+        Send your complaint in writing to
+        <a href="mailto:neurosciencesoc@src.gla.ac.uk">neurosciencesoc@src.gla.ac.uk</a>.
+      </p>
+      <p>
+        If your complaint concerns someone with access to that inbox, contact the Vice-President
+        instead: <span class="font-semibold">{'{{VP_EMAIL}}'}</span>.
+      </p>
+      <h2>What happens next</h2>
+      <ol>
+        <li>We aim to acknowledge your complaint within 7 working days.</li>
+        <li>
+          Two committee members review it first: the President or the Vice-President, plus the
+          Welfare Officer.
+        </li>
+        <li>
+          We aim to resolve it within 21 working days. If it will take longer, we will tell you.
+        </li>
+        <li>
+          If you ask, a stage-2 review is carried out by two different committee members.
+        </li>
+      </ol>
+      <p>Records of complaints are kept by the President until the end of the academic year.</p>
+      <p>This process is set out in the society's <a href="/constitution">constitution</a>.</p>
+      <h2>SRC procedure</h2>
+      <p>
+        <a
+          href="https://www.glasgowunisrc.org/resources/neurosciencesociety/Complaints-and-Disciplinary-Procedure/"
+          >SRC Complaints and Disciplinary Procedure (society copy on the SRC website)</a
+        >
+      </p>
+    </div>
+  </article>
+</Base>
