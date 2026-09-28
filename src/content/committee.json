@@ -1,0 +1,38 @@
+[
+  {
+    "role": "President",
+    "name": "Ariana Huarong Jones",
+    "courseYear": "{{PRESIDENT_COURSE_YEAR}}",
+    "askMeAbout": "{{PRESIDENT_ASK_ME_ABOUT}}"
+  },
+  {
+    "role": "Vice-President",
+    "name": "{{VICE_PRESIDENT_NAME}}",
+    "courseYear": "{{VICE_PRESIDENT_COURSE_YEAR}}",
+    "askMeAbout": "{{VICE_PRESIDENT_ASK_ME_ABOUT}}"
+  },
+  {
+    "role": "Treasurer",
+    "name": "{{TREASURER_NAME}}",
+    "courseYear": "{{TREASURER_COURSE_YEAR}}",
+    "askMeAbout": "{{TREASURER_ASK_ME_ABOUT}}"
+  },
+  {
+    "role": "Secretary",
+    "name": "{{SECRETARY_NAME}}",
+    "courseYear": "{{SECRETARY_COURSE_YEAR}}",
+    "askMeAbout": "{{SECRETARY_ASK_ME_ABOUT}}"
+  },
+  {
+    "role": "Academic Events Coordinator",
+    "name": "{{ACADEMIC_EVENTS_COORDINATOR_NAME}}",
+    "courseYear": "{{ACADEMIC_EVENTS_COORDINATOR_COURSE_YEAR}}",
+    "askMeAbout": "{{ACADEMIC_EVENTS_COORDINATOR_ASK_ME_ABOUT}}"
+  },
+  {
+    "role": "Welfare Officer",
+    "name": "{{WELFARE_OFFICER_NAME}}",
+    "courseYear": "{{WELFARE_OFFICER_COURSE_YEAR}}",
+    "askMeAbout": "{{WELFARE_OFFICER_ASK_ME_ABOUT}}"
+  }
+]

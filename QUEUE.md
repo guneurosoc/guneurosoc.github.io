@@ -40,10 +40,10 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 
 ### Phase 2 — Layout and pages
 
-- [ ] page-builder: global layout — sticky header with lock-up, nav, light/dark toggle (localStorage in try/catch), mobile drawer, skip link
-- [ ] page-builder: footer — Instagram, Facebook, X, SRC join link; Code of Conduct, Complaints, Constitution, Privacy, Credits links; affiliation line; © current year
-- [ ] page-builder: `PREVIEW` flag (default true) — banner on every page, `noindex` meta, robots.txt disallow-all; all three removed when false
-- [ ] page-builder: content collections `src/content/committee.json` and `src/content/previous-committees.json` (seeded with schema, no entries) with Zod schemas
+- [x] page-builder: global layout — sticky header with lock-up, nav, light/dark toggle (localStorage in try/catch), mobile drawer, skip link
+- [x] page-builder: footer — Instagram, Facebook, X, SRC join link; Code of Conduct, Complaints, Constitution, Privacy, Credits links; affiliation line; © current year
+- [x] page-builder: `PREVIEW` flag (default true) — banner on every page, `noindex` meta, robots.txt disallow-all; all three removed when false
+- [x] page-builder: content collections `src/content/committee.json` and `src/content/previous-committees.json` (seeded with schema, no entries) with Zod schemas
 - [ ] page-builder: Home — hero slot (poster image until phase 3), wordmark, one-line pitch from the About copy, CTAs "Become a member" → /join and "What's on → @guneurosci"; four aims cards; "Latest from Instagram" static grid from `/public/instagram/` linking to the profile with the follow line; join band; Glasgow Neuro one-liner
 - [ ] page-builder: About — four aims, full vs associate membership, equal-opportunities commitment, what we do; no history or founding year
 - [x] (pipeline done early: public/video/*, scripts/build-video.mjs, docs/VIDEO.md; Join page itself still open) page-builder: Join — video pipeline from `/video/how-to-join.mp4` (MP4 ≤ 2 MB + WebM, poster frame, `.vtt` captions from the five steps, `<video controls playsinline preload="none">` in a portrait phone frame); five steps as text; SRC button; `{{PRICE}}`; associate note; `{{MS_FORMS_URL}}` and `{{CHAT_URL}}` buttons; page works without the video
@@ -54,7 +54,7 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 - [ ] page-builder: Constitution — render `/content/constitution.docx` or `.md` verbatim with TOC and download links if present; otherwise download placeholder and adoption date 14 August 2026; never paraphrase
 - [ ] page-builder: Privacy — no cookies/analytics/forms; SRC handles membership and tickets (link); emails under the constitution's data-protection clause; localStorage for theme only
 - [ ] page-builder: Credits — every third-party asset with author, source URL and licence (from `ASSETS.md`)
-- [ ] page-builder: 404 — "This synapse doesn't connect."
+- [x] page-builder: 404 — "This synapse doesn't connect."
 - [ ] page-builder: per-page meta, build-time OG images, sitemap, robots, canonical URLs, JSON-LD Organization, CSP meta from `<technical>`
 - [ ] page-builder: create `/TODO.md` listing every `{{PLACEHOLDER}}` and "source logo file"
 - [ ] Verify: `astro check` clean, build passes, all eleven pages render

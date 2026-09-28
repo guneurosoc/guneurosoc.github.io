@@ -1,0 +1,119 @@
+---
+import Lockup from './Lockup.astro';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/join', label: 'Join' },
+  { href: '/committee', label: 'Committee' },
+  { href: '/contact', label: 'Contact' },
+];
+const strip = (p: string) => p.replace(/\/+$/, '') || '/';
+const current = strip(Astro.url.pathname);
+const linkClass =
+  'inline-flex min-h-11 min-w-11 items-center px-3 font-semibold text-link-on-surface underline underline-offset-4 hover:decoration-2 aria-[current=page]:decoration-4';
+const buttonClass =
+  'inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border-2 border-secondary px-3 font-semibold text-text hover:bg-surface-2';
+---
+
+<header class="sticky top-0 z-40 border-b border-border bg-surface">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2 sm:px-6">
+    <Lockup />
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} class={linkClass} aria-current={current === l.href ? 'page' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button type="button" class={buttonClass} data-theme-toggle aria-pressed="false">
+        <svg data-icon="sun" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg data-icon="moon" aria-hidden="true" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+        <span class="sr-only" data-theme-label>Switch to light theme</span>
+      </button>
+      <button
+        type="button"
+        class:list={[buttonClass, 'md:hidden']}
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-drawer-toggle
+      >
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Main" class="border-t border-border md:hidden" hidden>
+    <ul class="mx-auto flex max-w-6xl flex-col px-4 py-2 sm:px-6">
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} class:list={[linkClass, 'w-full']} aria-current={current === l.href ? 'page' : undefined}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const root = document.documentElement;
+
+  // Theme toggle: data-theme="light" on <html>; no attribute = dark (the default).
+  const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const label = toggle?.querySelector('[data-theme-label]');
+  const sun = toggle?.querySelector<SVGElement>('[data-icon="sun"]');
+  const moon = toggle?.querySelector<SVGElement>('[data-icon="moon"]');
+  function syncTheme() {
+    const light = root.dataset.theme === 'light';
+    toggle?.setAttribute('aria-pressed', String(light));
+    if (label) label.textContent = light ? 'Switch to dark theme' : 'Switch to light theme';
+    sun?.classList.toggle('hidden', light);
+    moon?.classList.toggle('hidden', !light);
+  }
+  toggle?.addEventListener('click', () => {
+    const light = root.dataset.theme !== 'light';
+    if (light) root.dataset.theme = 'light';
+    else delete root.dataset.theme;
+    try {
+      localStorage.setItem('theme', light ? 'light' : 'dark');
+    } catch {
+      // Storage blocked: the choice lasts for this page only.
+    }
+    syncTheme();
+  });
+  syncTheme();
+
+  // Mobile drawer.
+  const drawerButton = document.querySelector<HTMLButtonElement>('[data-drawer-toggle]');
+  const drawer = document.getElementById('mobile-nav');
+  function setDrawer(open: boolean) {
+    drawerButton?.setAttribute('aria-expanded', String(open));
+    drawer?.toggleAttribute('hidden', !open);
+  }
+  drawerButton?.addEventListener('click', () => {
+    setDrawer(drawerButton.getAttribute('aria-expanded') !== 'true');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawerButton?.getAttribute('aria-expanded') === 'true') {
+      setDrawer(false);
+      drawerButton.focus();
+    }
+  });
+</script>

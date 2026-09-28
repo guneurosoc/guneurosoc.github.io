@@ -1,2 +1,16 @@
 @import "tailwindcss";
 @import "./tokens.css";
+
+/* Striped border (DESIGN.md §4): footer top and hero bottom only. */
+@utility bg-stripes {
+  background-image: repeating-linear-gradient(90deg, var(--color-lavender) 0 2.5rem, var(--color-black) 2.5rem 5rem);
+}
+
+@layer base {
+  /* Focus ring (DESIGN.md §4): pink outline + halo so it holds 3:1 on light backgrounds too. */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 8px var(--focus-ring-halo);
+  }
+}

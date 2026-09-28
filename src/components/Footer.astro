@@ -1,0 +1,59 @@
+---
+const year = new Date().getFullYear();
+const social = [
+  { href: 'https://instagram.com/guneurosci', label: 'Instagram (@guneurosci)' },
+  { href: 'https://www.facebook.com/guneurosoc', label: 'Facebook' },
+  { href: 'https://twitter.com/NeuroscienceSoc', label: 'X' },
+];
+const governance = [
+  { href: '/code-of-conduct', label: 'Code of Conduct' },
+  { href: '/complaints', label: 'Complaints' },
+  { href: '/constitution', label: 'Constitution' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/credits', label: 'Credits' },
+];
+const linkClass =
+  'inline-flex min-h-11 items-center text-link-on-surface underline underline-offset-4 hover:decoration-2';
+---
+
+<footer class="bg-surface">
+  <div class="bg-stripes h-4 md:h-6" aria-hidden="true"></div>
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
+    <div>
+      <img src="/logo.png" alt="UofG Neuroscience Society logo" width="96" height="96" class="size-24 rounded-full" />
+    </div>
+    <div>
+      <h2 class="font-semibold">Follow us</h2>
+      <ul>
+        {
+          social.map((s) => (
+            <li>
+              <a href={s.href} rel="noopener" class={linkClass}>{s.label}</a>
+            </li>
+          ))
+        }
+        <li>
+          <a href="https://www.glasgowunisrc.org/organisation/neurosciencesociety/" rel="noopener" class={linkClass}>
+            Join on the SRC site
+          </a>
+        </li>
+      </ul>
+    </div>
+    <nav aria-label="Society policies">
+      <h2 class="font-semibold">Policies</h2>
+      <ul>
+        {
+          governance.map((g) => (
+            <li>
+              <a href={g.href} class={linkClass}>{g.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="mx-auto max-w-6xl border-t border-border px-4 py-6 text-sm text-text-muted sm:px-6">
+    <p>Affiliated to the Glasgow University Students' Representative Council</p>
+    <p>&copy; {year} Glasgow University Neuroscience Society</p>
+  </div>
+</footer>
