@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GU NeuroSoc: web swatch sheet (review aid)</title>
+<style>
+/* Review aid only, not part of the site. Values copied from src/styles/tokens.css (2026-09-29). */
+@font-face{font-family:"Unbounded";src:url("../public/fonts/Unbounded-Variable.woff2") format("woff2");font-weight:800 900;font-display:swap}
+@font-face{font-family:"Poppins";src:url("../public/fonts/Poppins-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Poppins";src:url("../public/fonts/Poppins-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Poppins";src:url("../public/fonts/Poppins-BoldItalic.woff2") format("woff2");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"Archivo Black";src:url("../public/fonts/ArchivoBlack-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+
+.dark{--bg:#0a0716;--surface:#161033;--surface-2:#241d52;--text:#eeebff;--text-muted:#b4aed6;--primary:#543fca;--on-primary:#fefadd;--cta:#fe67c6;--cta-text:#0a0716;--cta-border:#fe67c6;--secondary:#4f6ffe;--link:#4f6ffe;--link-on-surface:#8ad2fe;--focus-ring:#fe67c6;--focus-ring-halo:#0a0716;--chip:#fdd403;--chip-text:#000;--headline:#fefadd;--headline-shadow:#241d52;--glow:#e698fd;--border:#241d52;--border-strong:#b4aed6;color-scheme:dark}
+.light{--bg:#fefadd;--surface:#fff;--surface-2:#eeebff;--text:#241d52;--text-muted:#543fca;--primary:#543fca;--on-primary:#fefadd;--cta:#fe67c6;--cta-text:#241d52;--cta-border:#241d52;--secondary:#4f6ffe;--link:#5d16e9;--link-on-surface:#5d16e9;--focus-ring:#fe67c6;--focus-ring-halo:#241d52;--chip:#fdd403;--chip-text:#000;--headline:#543fca;--headline-shadow:#241d52;--glow:#e698fd;--border:#e698fd;--border-strong:#543fca;color-scheme:light}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background:#0a0716;color:#eeebff;line-height:1.6}
+.stripe{height:1.5rem;background:repeating-linear-gradient(90deg,#e698fd 0 2.5rem,#000 2.5rem 5rem)}
+main{max-width:72rem;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1,h2,.display{font-family:Unbounded,"Archivo Black",system-ui,sans-serif;text-transform:uppercase}
+h1{font-weight:900;font-size:clamp(2.5rem,1.4rem + 5.5vw,6rem);line-height:.95;color:#fefadd;text-shadow:max(2px,.04em) max(2px,.04em) 0 #241d52;margin:.5rem 0}
+h2{font-weight:800;font-size:clamp(1.75rem,1.35rem + 2vw,2.75rem);line-height:1.1;margin:3rem 0 1rem}
+.muted{color:#b4aed6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(10rem,1fr));gap:1rem}
+.sw{border-radius:1rem;overflow:hidden;background:#161033}
+.sw div{height:6rem;border-bottom:1px solid #241d52}
+.sw p{margin:.5rem .75rem;font-size:.875rem}
+.sw b{display:block;font-weight:600}
+.themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));gap:1.5rem}
+.theme{background:var(--bg);color:var(--text);border-radius:1rem;padding:1.5rem;border:2px solid var(--border)}
+.theme h3{font-family:Unbounded,"Archivo Black",sans-serif;font-weight:900;text-transform:uppercase;font-size:2rem;line-height:1;color:var(--headline);text-shadow:max(2px,.04em) max(2px,.04em) 0 var(--headline-shadow);margin:0 0 1rem}
+.roles{width:100%;border-collapse:collapse;font-size:.8125rem;margin-bottom:1rem}
+.roles td{padding:.25rem .25rem;border-bottom:1px solid var(--border)}
+.roles td:first-child{width:1.75rem}
+.dot{display:inline-block;width:1.25rem;height:1.25rem;border-radius:50%;border:1px solid var(--border-strong);vertical-align:middle}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:1rem;padding:1.25rem;margin:1rem 0}
+.card a{color:var(--link-on-surface)}
+a{color:var(--link, #4f6ffe);text-decoration:underline;text-underline-offset:4px}
+.row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin:.75rem 0}
+.btn{font:600 1rem/1 Poppins,sans-serif;min-height:44px;padding:0 1.5rem;border-radius:999px;display:inline-flex;align-items:center;cursor:pointer}
+.btn-cta{background:var(--cta);color:var(--cta-text);border:2px solid var(--cta-border)}
+.light .btn-cta{box-shadow:.25rem .25rem 0 0 var(--headline-shadow)}
+.btn-sec{background:transparent;color:var(--text);border:2px solid var(--secondary)}
+.btn-sec:hover{background:var(--surface-2)}
+.focus-demo,.btn:focus-visible,a:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px;box-shadow:0 0 0 8px var(--focus-ring-halo)}
+.chip{display:inline-block;background:var(--chip);color:var(--chip-text);border:2px solid #000;border-radius:999px;font:600 .875rem/1.4 Poppins,sans-serif;text-transform:uppercase;padding:.2rem .75rem}
+.strip{background:var(--chip);color:var(--chip-text);font:600 1rem/1 Poppins,sans-serif;text-transform:uppercase;padding:.6rem 1rem;margin:1rem -1.5rem}
+.band{background:var(--primary);color:var(--on-primary);border-radius:1rem;padding:1.25rem;margin-top:1rem}
+.band .display{font-weight:900;font-size:1.75rem;line-height:1;color:var(--on-primary);text-shadow:max(2px,.04em) max(2px,.04em) 0 #241d52}
+.band a{color:var(--on-primary)}
+.band .btn-cta{border-color:#241d52}
+.tag{font-weight:700;font-style:italic}
+.lockup{display:inline-flex;align-items:center;gap:.75rem;background:#0a0716;border-radius:999px;padding-right:1rem}
+.lockup img{width:48px;height:48px;border-radius:50%;display:block}
+.lockup span{display:flex;flex-direction:column;font-weight:600;line-height:1.15}
+.lockup .u{color:#fe67c6;font-size:.875rem}
+.lockup .n{color:#4f6ffe;font-size:1rem}
+.type td{padding:.5rem .75rem .5rem 0;vertical-align:baseline;border-bottom:1px solid #241d52}
+.type td:first-child{font-size:.8125rem;color:#b4aed6;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="stripe" aria-hidden="true"></div>
+<main>
+<p class="muted">Review aid for DESIGN.md, not part of the site. Fonts load from ../public/fonts. No network requests.</p>
+<h1>Web swatches</h1>
+
+<h2>Brand colours (brand-tokens.json)</h2>
+<div class="grid">
+  <div class="sw"><div style="background:#543FCA"></div><p><b>Indigo</b>#543FCA</p></div>
+  <div class="sw"><div style="background:#E698FD"></div><p><b>Lavender</b>#E698FD</p></div>
+  <div class="sw"><div style="background:#4F6FFE"></div><p><b>Electric blue</b>#4F6FFE</p></div>
+  <div class="sw"><div style="background:#FE67C6"></div><p><b>Hot pink</b>#FE67C6</p></div>
+  <div class="sw"><div style="background:#8AD2FE"></div><p><b>Sky</b>#8AD2FE</p></div>
+  <div class="sw"><div style="background:#5D16E9"></div><p><b>Deep violet</b>#5D16E9</p></div>
+  <div class="sw"><div style="background:#FDD403"></div><p><b>Poster yellow</b>#FDD403</p></div>
+  <div class="sw"><div style="background:#FEFADD"></div><p><b>Cream</b>#FEFADD</p></div>
+  <div class="sw"><div style="background:#241D52"></div><p><b>Navy</b>#241D52</p></div>
+  <div class="sw"><div style="background:#0A0716;border:1px solid #241D52"></div><p><b>Night</b>#0A0716</p></div>
+  <div class="sw"><div style="background:#000000"></div><p><b>Black</b>#000000</p></div>
+  <div class="sw"><div style="background:#B4AED6"></div><p><b>Mist</b>#B4AED6</p></div>
+  <div class="sw"><div style="background:#EEEBFF"></div><p><b>Text on dark</b>#EEEBFF</p></div>
+  <div class="sw"><div style="background:#FFFFFF"></div><p><b>White</b>#FFFFFF</p></div>
+  <div class="sw"><div style="background:#161033"></div><p><b>Surface (role)</b>#161033</p></div>
+</div>
+
+<h2>Semantic roles, both themes</h2>
+<div class="themes">
+<!-- Each panel: same markup, different token set -->
+<section class="theme dark" aria-label="Dark theme (default)">
+  <h3>Dark (default)</h3>
+  <table class="roles">
+    <tr><td><span class="dot" style="background:var(--bg)"></span></td><td>bg</td><td>night #0A0716</td></tr>
+    <tr><td><span class="dot" style="background:var(--surface)"></span></td><td>surface</td><td>#161033</td></tr>
+    <tr><td><span class="dot" style="background:var(--surface-2)"></span></td><td>surface-2</td><td>navy #241D52</td></tr>
+    <tr><td><span class="dot" style="background:var(--text)"></span></td><td>text</td><td>#EEEBFF</td></tr>
+    <tr><td><span class="dot" style="background:var(--text-muted)"></span></td><td>text-muted</td><td>mist #B4AED6</td></tr>
+    <tr><td><span class="dot" style="background:var(--cta)"></span></td><td>cta / cta-text</td><td>hot pink / night</td></tr>
+    <tr><td><span class="dot" style="background:var(--link)"></span></td><td>link</td><td>electric blue #4F6FFE</td></tr>
+    <tr><td><span class="dot" style="background:var(--link-on-surface)"></span></td><td>link-on-surface</td><td>sky #8AD2FE</td></tr>
+    <tr><td><span class="dot" style="background:var(--focus-ring)"></span></td><td>focus-ring / halo</td><td>hot pink / night</td></tr>
+    <tr><td><span class="dot" style="background:var(--chip)"></span></td><td>chip</td><td>poster yellow, black text</td></tr>
+    <tr><td><span class="dot" style="background:var(--headline)"></span></td><td>headline / shadow</td><td>cream / navy</td></tr>
+    <tr><td><span class="dot" style="background:var(--glow)"></span></td><td>glow</td><td>lavender</td></tr>
+    <tr><td><span class="dot" style="background:var(--border)"></span></td><td>border / strong</td><td>navy / mist</td></tr>
+  </table>
+  <p>Body text in Poppins. <span style="color:var(--text-muted)">Muted secondary text.</span> A <a href="#">link on the background</a>.</p>
+  <div class="row"><button class="btn btn-cta" type="button">Become a member</button><button class="btn btn-sec" type="button">Secondary</button></div>
+  <div class="row"><span class="btn btn-cta focus-demo">Focus ring (static)</span></div>
+  <div class="row"><span class="chip">From 7pm</span><span class="tag">everyone welcome!</span></div>
+  <div class="strip">Date strip: day, date, time</div>
+  <div class="card">Card on surface, with a <a href="#">link on surface</a>.</div>
+  <div class="band"><div class="display">Poster band</div><p>Cream on indigo, 6.78:1. <a href="#">Cream link</a></p><button class="btn btn-cta" type="button">CTA on band</button></div>
+  <p class="row"><span class="lockup"><img src="../brand/logo.png" alt=""><span><span class="u">UofG</span><span class="n">Neuroscience Society</span></span></span></p>
+</section>
+
+<section class="theme light" aria-label="Light theme">
+  <h3>Light</h3>
+  <table class="roles">
+    <tr><td><span class="dot" style="background:var(--bg)"></span></td><td>bg</td><td>cream #FEFADD</td></tr>
+    <tr><td><span class="dot" style="background:var(--surface)"></span></td><td>surface</td><td>white #FFFFFF</td></tr>
+    <tr><td><span class="dot" style="background:var(--surface-2)"></span></td><td>surface-2</td><td>#EEEBFF</td></tr>
+    <tr><td><span class="dot" style="background:var(--text)"></span></td><td>text</td><td>navy #241D52</td></tr>
+    <tr><td><span class="dot" style="background:var(--text-muted)"></span></td><td>text-muted</td><td>indigo #543FCA</td></tr>
+    <tr><td><span class="dot" style="background:var(--cta)"></span></td><td>cta / cta-text</td><td>hot pink / navy, navy border</td></tr>
+    <tr><td><span class="dot" style="background:var(--link)"></span></td><td>link</td><td>deep violet #5D16E9</td></tr>
+    <tr><td><span class="dot" style="background:var(--link-on-surface)"></span></td><td>link-on-surface</td><td>deep violet #5D16E9</td></tr>
+    <tr><td><span class="dot" style="background:var(--focus-ring)"></span></td><td>focus-ring / halo</td><td>hot pink / navy</td></tr>
+    <tr><td><span class="dot" style="background:var(--chip)"></span></td><td>chip</td><td>poster yellow, black text</td></tr>
+    <tr><td><span class="dot" style="background:var(--headline)"></span></td><td>headline / shadow</td><td>indigo / navy</td></tr>
+    <tr><td><span class="dot" style="background:var(--glow)"></span></td><td>glow</td><td>lavender</td></tr>
+    <tr><td><span class="dot" style="background:var(--border)"></span></td><td>border / strong</td><td>lavender / indigo</td></tr>
+  </table>
+  <p>Body text in Poppins. <span style="color:var(--text-muted)">Muted secondary text.</span> A <a href="#">link on the background</a>.</p>
+  <div class="row"><button class="btn btn-cta" type="button">Become a member</button><button class="btn btn-sec" type="button">Secondary</button></div>
+  <div class="row"><span class="btn btn-cta focus-demo">Focus ring (static)</span></div>
+  <div class="row"><span class="chip">From 7pm</span><span class="tag">everyone welcome!</span></div>
+  <div class="strip">Date strip: day, date, time</div>
+  <div class="card">Card on surface, with a <a href="#">link on surface</a>.</div>
+  <div class="band"><div class="display">Poster band</div><p>Cream on indigo, 6.78:1. <a href="#">Cream link</a></p><button class="btn btn-cta" type="button">CTA on band</button></div>
+  <p class="row"><span class="lockup"><img src="../brand/logo.png" alt=""><span><span class="u">UofG</span><span class="n">Neuroscience Society</span></span></span></p>
+</section>
+</div>
+
+<h2>Type scale</h2>
+<table class="type">
+  <tr><td>hero · Unbounded 900 · 42→96px</td><td class="display" style="font-weight:900;font-size:clamp(2.5rem,1.4rem + 5.5vw,6rem);line-height:.95;color:#fefadd;text-shadow:max(2px,.04em) max(2px,.04em) 0 #241d52">Neurosoc</td></tr>
+  <tr><td>h1 · Unbounded 900 · 31→64px</td><td class="display" style="font-weight:900;font-size:clamp(1.875rem,1.2rem + 3.4vw,4rem);line-height:1">Neuroscience</td></tr>
+  <tr><td>h2 · Unbounded 800 · 29→44px</td><td class="display" style="font-weight:800;font-size:clamp(1.75rem,1.35rem + 2vw,2.75rem);line-height:1.1">Committee</td></tr>
+  <tr><td>h3 · Unbounded 800 · 20→26px</td><td style="font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(1.25rem,1.1rem + .75vw,1.625rem);line-height:1.2">Heading level three</td></tr>
+  <tr><td>alt · Archivo Black 400</td><td style="font-family:'Archivo Black',sans-serif;font-size:2.5rem;line-height:1;text-transform:uppercase">Constitution</td></tr>
+  <tr><td>lead · Poppins 400 · 18→21px</td><td style="font-size:clamp(1.125rem,1.05rem + .4vw,1.3125rem)">A one-line pitch sits here in the lead size.</td></tr>
+  <tr><td>body · Poppins 400 · 16px</td><td>Body copy is Poppins Regular at 1rem with 1.6 line height.</td></tr>
+  <tr><td>label · Poppins 600</td><td style="font-weight:600">Labels, nav items, dates and buttons</td></tr>
+  <tr><td>tagline · Poppins 700 italic</td><td class="tag" style="font-size:1.5rem">everyone welcome!</td></tr>
+</table>
+</main>
+<div class="stripe" aria-hidden="true"></div>
+</body>
+</html>

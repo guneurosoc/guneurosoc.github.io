@@ -17,11 +17,11 @@ Phases come from `BRIEF.md` `<phases>`. Commit after each phase.
       `threejs`) if the repositories exist; record in `/docs/TOOLING.md` what installed and what
       didn't
 - [x] Scaffold Astro (static output, TypeScript, Tailwind v4, pnpm, Node LTS)
-- [ ] brand-designer: implement `brand/BRAND.md` as `DESIGN.md` (website application only),
+- [x] brand-designer: implement `brand/BRAND.md` as `DESIGN.md` (website application only),
       `src/styles/tokens.css`, and self-hosted fonts from `brand/fonts/`
-- [ ] Stop and show the user `DESIGN.md` plus a screenshot or description of the token swatches
+- [x] (unattended: summary in STATE.md "Needs the user's eyes") Stop and show the user `DESIGN.md` plus a screenshot or description of the token swatches
       before continuing
-- [ ] Commit phase 1
+- [x] Commit phase 1
 
 **Definition of done for this phase:** `/docs/TOOLING.md` exists and is accurate; Astro
 scaffold builds; `DESIGN.md`, `src/styles/tokens.css` and self-hosted fonts exist and match

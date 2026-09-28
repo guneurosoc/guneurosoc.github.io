@@ -1,1 +1,167 @@
-/* filled by brand-designer */
+/*
+ * GU NeuroSoc design tokens. Source: brand/brand-tokens.json (v1.0.0, 2026-09-28).
+ * How they are applied to the website: DESIGN.md. Tokens only, no component CSS.
+ */
+
+/* ---- Self-hosted fonts (public/fonts, OFL-1.1, licences alongside) ---- */
+@font-face {
+  font-family: "Unbounded";
+  src: url("/fonts/Unbounded-Variable.woff2") format("woff2");
+  font-weight: 800 900; /* subset file keeps only the wght 800–900 range */
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2013-2014, U+2018-201D, U+2026, U+20AC, U+2122;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archivo Black";
+  src: url("/fonts/ArchivoBlack-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Brand primitives: exactly the 14 colours in brand-tokens.json ---- */
+@theme static { /* static: always emit, so custom CSS/JS can read var(--color-*) */
+  /* Brand palette only: drop Tailwind's default colours (BRAND.md checklist 1). */
+  --color-*: initial;
+
+  --color-indigo: #543fca;
+  --color-lavender: #e698fd;
+  --color-electric-blue: #4f6ffe;
+  --color-hot-pink: #fe67c6;
+  --color-sky: #8ad2fe;
+  --color-deep-violet: #5d16e9;
+  --color-poster-yellow: #fdd403;
+  --color-cream: #fefadd;
+  --color-navy: #241d52;
+  --color-night: #0a0716;
+  --color-black: #000000;
+  --color-mist: #b4aed6;
+  --color-text-on-dark: #eeebff;
+  --color-white: #ffffff;
+
+  --font-display: "Unbounded", "Archivo Black", system-ui, sans-serif;
+  --font-text: "Poppins", system-ui, sans-serif;
+  --font-display-alt: "Archivo Black", system-ui, sans-serif;
+  --font-sans: var(--font-text);
+
+  /* Fluid type scale (DESIGN.md "Type") */
+  --text-hero: clamp(2.5rem, 1.4rem + 5.5vw, 6rem);
+  --text-hero--line-height: 0.95;
+  --text-h1: clamp(1.875rem, 1.2rem + 3.4vw, 4rem);
+  --text-h1--line-height: 1;
+  --text-h2: clamp(1.75rem, 1.35rem + 2vw, 2.75rem);
+  --text-h2--line-height: 1.1;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.75vw, 1.625rem);
+  --text-h3--line-height: 1.2;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+
+  --radius-card: 1rem;
+}
+
+/* ---- Semantic tokens: dark is the default theme ---- */
+:root {
+  color-scheme: dark;
+  --bg: #0a0716;              /* night */
+  --surface: #161033;         /* role.surface */
+  --surface-2: #241d52;       /* navy */
+  --text: #eeebff;            /* text-on-dark */
+  --text-muted: #b4aed6;      /* mist */
+  --primary: #543fca;         /* indigo: bands and panels */
+  --on-primary: #fefadd;      /* cream: the only text colour on indigo (with white) */
+  --cta: #fe67c6;             /* hot pink */
+  --cta-text: #0a0716;        /* night on pink */
+  --cta-border: #fe67c6;      /* pink = fill; no visible edge needed on night */
+  --secondary: #4f6ffe;       /* electric blue: secondary button borders, outlines */
+  --link: #4f6ffe;            /* electric blue: on --bg only */
+  --link-on-surface: #8ad2fe; /* sky: links on --surface, --surface-2 */
+  --focus-ring: #fe67c6;      /* hot pink */
+  --focus-ring-halo: #0a0716; /* night */
+  --chip: #fdd403;            /* poster yellow */
+  --chip-text: #000000;
+  --headline: #fefadd;        /* cream */
+  --headline-shadow: #241d52; /* navy */
+  --glow: #e698fd;            /* lavender */
+  --border: #241d52;          /* navy: decorative dividers */
+  --border-strong: #b4aed6;   /* mist: form-control edges */
+}
+
+/* ---- Light theme: derived from the same palette (DESIGN.md) ---- */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fefadd;              /* cream */
+  --surface: #ffffff;         /* white */
+  --surface-2: #eeebff;       /* text-on-dark, used as a pale lavender surface */
+  --text: #241d52;            /* navy */
+  --text-muted: #543fca;      /* indigo */
+  --primary: #543fca;
+  --on-primary: #fefadd;
+  --cta: #fe67c6;             /* pink fill; never pink text on light */
+  --cta-text: #241d52;        /* navy on pink */
+  --cta-border: #241d52;      /* pink vs cream is 2.50:1, so the edge is navy */
+  --secondary: #4f6ffe;
+  --link: #5d16e9;            /* deep violet: electric blue fails on white/cream */
+  --link-on-surface: #5d16e9;
+  --focus-ring: #fe67c6;
+  --focus-ring-halo: #241d52; /* navy halo carries the 3:1 on light */
+  --chip: #fdd403;
+  --chip-text: #000000;
+  --headline: #543fca;        /* indigo */
+  --headline-shadow: #241d52; /* navy */
+  --glow: #e698fd;
+  --border: #e698fd;          /* lavender: decorative */
+  --border-strong: #543fca;   /* indigo */
+}
+
+/* ---- Semantic tokens exposed as Tailwind utilities (bg-bg, text-text, ...) ---- */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-cta: var(--cta);
+  --color-cta-text: var(--cta-text);
+  --color-cta-border: var(--cta-border);
+  --color-secondary: var(--secondary);
+  --color-link: var(--link);
+  --color-link-on-surface: var(--link-on-surface);
+  --color-focus-ring: var(--focus-ring);
+  --color-focus-ring-halo: var(--focus-ring-halo);
+  --color-chip: var(--chip);
+  --color-chip-text: var(--chip-text);
+  --color-headline: var(--headline);
+  --color-headline-shadow: var(--headline-shadow);
+  --color-glow: var(--glow);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* Poster headline drop-shadow: ~5% of Unbounded's cap height (0.75em) */
+  --text-shadow-poster: max(2px, 0.04em) max(2px, 0.04em) 0 var(--headline-shadow);
+  /* Hard "sticker" shadow for CTAs and chips */
+  --shadow-poster: 0.25rem 0.25rem 0 0 var(--headline-shadow);
+}
