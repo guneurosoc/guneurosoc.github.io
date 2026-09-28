@@ -28,10 +28,10 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 
 ### Phase 1 — Tooling and design foundation
 
-- [ ] List installed plugins, skills and MCP servers into `/docs/TOOLING.md`
-- [ ] Install GreenSock's official GSAP skills, if the repository exists; record result in `/docs/TOOLING.md`
-- [ ] Install the Open Design skills (`frontend-design`, `ui-ux-pro-max`, `web-design-guidelines`, `creative-director`, `threejs`), if the repositories exist; record what installed and what didn't in `/docs/TOOLING.md`
-- [ ] Scaffold Astro: static output, TypeScript, Tailwind v4, pnpm, Node LTS; `site` from a single `SITE_URL` config value, `base` = `/`
+- [x] List installed plugins, skills and MCP servers into `/docs/TOOLING.md`
+- [x] Install GreenSock's official GSAP skills, if the repository exists; record result in `/docs/TOOLING.md`
+- [x] Install the Open Design skills (`frontend-design`, `ui-ux-pro-max`, `web-design-guidelines`, `creative-director`, `threejs`), if the repositories exist; record what installed and what didn't in `/docs/TOOLING.md`
+- [x] Scaffold Astro: static output, TypeScript, Tailwind v4, pnpm, Node LTS; `site` from a single `SITE_URL` config value, `base` = `/`
 - [ ] brand-designer: write `DESIGN.md` — website application of `brand/BRAND.md` only (theme roles, dark/light themes, logo lock-up, favicon plan, poster-grammar usage); record any decision BRAND.md doesn't cover
 - [ ] brand-designer: write `src/styles/tokens.css` from `brand/brand-tokens.json` / `brand/brand.css`, wired to Tailwind v4
 - [ ] brand-designer: self-host Unbounded, Poppins and Archivo Black from `brand/fonts/` with their OFL licences

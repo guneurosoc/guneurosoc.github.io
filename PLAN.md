@@ -11,12 +11,12 @@ Phases come from `BRIEF.md` `<phases>`. Commit after each phase.
 
 **Phase 1: Tooling and design foundation**
 
-- [ ] List installed plugins, skills and MCP servers into `/docs/TOOLING.md`
+- [x] List installed plugins, skills and MCP servers into `/docs/TOOLING.md`
 - [ ] Install the skills named in BRIEF.md `<motion>` (GreenSock's official GSAP skills; Open
       Design `frontend-design`, `ui-ux-pro-max`, `web-design-guidelines`, `creative-director`,
       `threejs`) if the repositories exist; record in `/docs/TOOLING.md` what installed and what
       didn't
-- [ ] Scaffold Astro (static output, TypeScript, Tailwind v4, pnpm, Node LTS)
+- [x] Scaffold Astro (static output, TypeScript, Tailwind v4, pnpm, Node LTS)
 - [ ] brand-designer: implement `brand/BRAND.md` as `DESIGN.md` (website application only),
       `src/styles/tokens.css`, and self-hosted fonts from `brand/fonts/`
 - [ ] Stop and show the user `DESIGN.md` plus a screenshot or description of the token swatches
