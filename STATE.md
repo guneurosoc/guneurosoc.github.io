@@ -8,7 +8,7 @@
 **Last updated:** 2026-09-29 (session restarted after crash; unattended run)
 **Status:** `IN_PROGRESS`
 
-**Working on:** Phase 2. Wave A committed (0a6b48f). page-builder follow-up in flight: shared classes in global.css (.btn-primary/.btn-secondary/.chip/.date-strip/.card/.band/.headline/.container-site/.section/.prose-site), no-JS drawer, toggle label, public/instagram copy. Next: wave B, three page-builders in parallel.
+**Working on:** Phase 2 wave B in flight (3 page-builders in parallel): B1 index+about+join, B2 committee+contact, B3 code-of-conduct+complaints+constitution+privacy+credits. Header/Footer/Base/global.css frozen. Last commit: shared classes.
 
 **Last command run:** `pnpm astro check` → 0 errors; `pnpm build` → 2 pages; dist scripts: /theme.js, ld+json, Header bundle (CSP-safe)
 
