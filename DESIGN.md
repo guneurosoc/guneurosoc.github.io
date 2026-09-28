@@ -184,11 +184,11 @@ The pip / fonttools route was not available: there was no pip or ensurepip in th
   - The whole lock-up sits on a **night pill** (`bg-night rounded-full pr-4`) in both themes. Pink and blue text are only legible on night (pink 7.56 (B), blue 4.78 (B)). In dark the pill is invisible; in light it reads as a poster sticker.
   - It is wrapped in the home link, with accessible name "UofG Neuroscience Society, home".
 - **Favicon plan (from the brain-and-nodes mark):**
-  - Crop, don't redraw. The brain's dark pixels span x 63–307, y 62–263 in logo.png. Crop a square around that area (with node padding, about 270 px) on the logo's own white.
+  - Don't redraw. Use the whole 375×375 logo, flattened onto white and downscaled (a square crop of the brain area was tried and clips the wordmark, so it was dropped).
   - Export `favicon.ico` (16, 32, 48) and `apple-touch-icon.png` (180).
   - No SVG favicon, because that would mean redrawing the logo.
   - No 192/512 manifest icons, because they would upscale beyond the 375 px source.
-  - Built 2026-09-29: `public/favicon.ico` (16/32/48, PNG-in-ICO), `public/favicon-32.png`, `public/apple-touch-icon.png` (180). Crop box used: x 50–320, y 28–298 (270 px square centred on the brain, flattened on white, Lanczos downscale only).
+  - Built 2026-09-29: `public/favicon.ico` (16/32/48, PNG-in-ICO), `public/favicon-32.png`, `public/apple-touch-icon.png` (180), made from the full logo, downscaled, because any square crop of the brain clips the wordmark.
 
 ## 5. Motion principles
 
@@ -223,7 +223,7 @@ For the committee to confirm and add to the guide.
 10. **Header lock-up sits on a night pill in both themes,** so the pink "UofG" is never on a light background.
 11. **Lock-up typography:** Poppins 600, 0.875 rem for "UofG" and 1 rem for "Neuroscience Society", mark at 48 px.
 12. **Logo sizes:** 48 px in the header, 96 px in the footer, 375 px maximum. Mask with `border-radius: 50%` and keep the white rim.
-13. **Favicon:** cropped from the PNG (brain area), ICO plus a 180 px touch icon. No SVG and no large manifest icons.
+13. **Favicon:** the whole logo downscaled (see 25), ICO plus a 180 px touch icon. No SVG and no large manifest icons.
 14. **Headline casing:** hero, h1 and h2 in capitals; h3 in sentence case (BRAND.md only says "capitals for poster headlines").
 15. **Weights per heading level:** 900 for hero and h1, 800 for h2 and h3.
 16. **Fluid type scale and minimum sizes** as tabled above.
@@ -235,3 +235,4 @@ For the committee to confirm and add to the guide.
 22. **No automatic OS theme switching.** Dark is the default until the user toggles.
 23. **Unbounded is subset to Latin-1 plus common punctuation, €, ™.** Glyphs outside it fall back to Archivo Black.
 24. **Motion colour roles** as tabled above (pink divider stroke, lavender glow, pink firing pulses).
+25. **Favicons are the whole logo downscaled;** a text-free brain mark in /brand would allow a cleaner favicon (for the committee).
