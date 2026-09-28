@@ -1,0 +1,19 @@
+:root{
+  --indigo:#543FCA;
+  --lavender:#E698FD;
+  --electric-blue:#4F6FFE;
+  --hot-pink:#FE67C6;
+  --sky:#8AD2FE;
+  --deep-violet:#5D16E9;
+  --poster-yellow:#FDD403;
+  --cream:#FEFADD;
+  --navy:#241D52;
+  --night:#0A0716;
+  --black:#000000;
+  --mist:#B4AED6;
+  --text-on-dark:#EEEBFF;
+  --white:#FFFFFF;
+  --surface:#161033;
+  --font-display:'Unbounded',system-ui,sans-serif;
+  --font-text:'Poppins',system-ui,sans-serif;
+}

@@ -1,0 +1,28 @@
+# WSL device-node dotfiles in the project root (not real files)
+/.bash_profile
+/.bashrc
+/.gitconfig
+/.gitmodules
+/.idea
+/.mcp.json
+/.profile
+/.ripgreprc
+/.vscode
+/.zprofile
+/.zshrc
+/.claude/settings.local.json
+/.claude/loop.md
+
+node_modules/
+dist/
+.astro/
+# .claude entries masked as device nodes inside the sandbox (local config, not site source)
+/.claude/commands
+/.claude/hooks
+/.claude/launch.json
+/.claude/output-styles
+/.claude/routines
+/.claude/scheduled_tasks.json
+/.claude/skills
+/.claude/workflows
+/.claude/.cc-writes

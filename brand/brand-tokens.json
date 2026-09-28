@@ -1,0 +1,80 @@
+{
+  "name": "GU NeuroSoc",
+  "version": "1.0.0",
+  "date": "2026-09-28",
+  "source": "k-means on logo + 2026-09-22 pub-quiz post",
+  "color": {
+    "indigo": "#543FCA",
+    "lavender": "#E698FD",
+    "electric-blue": "#4F6FFE",
+    "hot-pink": "#FE67C6",
+    "sky": "#8AD2FE",
+    "deep-violet": "#5D16E9",
+    "poster-yellow": "#FDD403",
+    "cream": "#FEFADD",
+    "navy": "#241D52",
+    "night": "#0A0716",
+    "black": "#000000",
+    "mist": "#B4AED6",
+    "text-on-dark": "#EEEBFF",
+    "white": "#FFFFFF"
+  },
+  "role": {
+    "background-dark": "night",
+    "surface": "#161033",
+    "surface-2": "navy",
+    "primary": "indigo",
+    "cta": "hot-pink",
+    "link": "electric-blue",
+    "focus-ring": "hot-pink",
+    "chip": "poster-yellow",
+    "headline-on-primary": "cream",
+    "headline-shadow": "navy",
+    "glow": "lavender"
+  },
+  "font": {
+    "display": {
+      "family": "Unbounded",
+      "weights": [
+        800,
+        900
+      ],
+      "status": "proposed",
+      "licence": "OFL-1.1"
+    },
+    "text": {
+      "family": "Poppins",
+      "weights": [
+        400,
+        600,
+        "700 italic"
+      ],
+      "status": "proposed",
+      "licence": "OFL-1.1"
+    },
+    "display-alt": {
+      "family": "Archivo Black",
+      "status": "proposed",
+      "licence": "OFL-1.1"
+    }
+  },
+  "contrast_rules": {
+    "never": [
+      "hot-pink text on white (2.63:1)"
+    ],
+    "large-bold-only": [
+      "electric-blue on white (4.17:1)",
+      "white on electric-blue (4.17:1)"
+    ]
+  },
+  "formats": {
+    "instagram-post": [
+      1080,
+      1350
+    ],
+    "instagram-story": [
+      1080,
+      1920
+    ]
+  }
+}
