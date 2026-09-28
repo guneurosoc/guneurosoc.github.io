@@ -33,7 +33,7 @@ const buttonClass =
       </ul>
     </nav>
     <div class="flex items-center gap-2">
-      <button type="button" class={buttonClass} data-theme-toggle aria-pressed="false">
+      <button type="button" class={buttonClass} data-theme-toggle data-js-only>
         <svg data-icon="sun" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="12" cy="12" r="4"></circle>
           <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
@@ -49,6 +49,7 @@ const buttonClass =
         aria-expanded="false"
         aria-controls="mobile-nav"
         data-drawer-toggle
+        data-js-only
       >
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M4 6h16M4 12h16M4 18h16"></path>
@@ -57,7 +58,7 @@ const buttonClass =
       </button>
     </div>
   </div>
-  <nav id="mobile-nav" aria-label="Main" class="border-t border-border md:hidden" hidden>
+  <nav id="mobile-nav" aria-label="Main" class="border-t border-border md:hidden">
     <ul class="mx-auto flex max-w-6xl flex-col px-4 py-2 sm:px-6">
       {
         links.map((l) => (
@@ -74,6 +75,7 @@ const buttonClass =
 
 <script>
   const root = document.documentElement;
+  root.classList.add('js'); // normally already set by /theme.js
 
   // Theme toggle: data-theme="light" on <html>; no attribute = dark (the default).
   const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
@@ -82,7 +84,6 @@ const buttonClass =
   const moon = toggle?.querySelector<SVGElement>('[data-icon="moon"]');
   function syncTheme() {
     const light = root.dataset.theme === 'light';
-    toggle?.setAttribute('aria-pressed', String(light));
     if (label) label.textContent = light ? 'Switch to dark theme' : 'Switch to light theme';
     sun?.classList.toggle('hidden', light);
     moon?.classList.toggle('hidden', !light);
@@ -100,12 +101,13 @@ const buttonClass =
   });
   syncTheme();
 
-  // Mobile drawer.
+  // Mobile drawer. Open without JS; with the .js class, CSS hides it unless data-open is set
+  // (global.css), so it is closed from first paint with no flash.
   const drawerButton = document.querySelector<HTMLButtonElement>('[data-drawer-toggle]');
   const drawer = document.getElementById('mobile-nav');
   function setDrawer(open: boolean) {
     drawerButton?.setAttribute('aria-expanded', String(open));
-    drawer?.toggleAttribute('hidden', !open);
+    drawer?.toggleAttribute('data-open', open);
   }
   drawerButton?.addEventListener('click', () => {
     setDrawer(drawerButton.getAttribute('aria-expanded') !== 'true');

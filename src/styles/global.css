@@ -1,16 +1,124 @@
+/*
+ * Global styles. Shared component classes (DESIGN.md §4), use these instead of new styles:
+ *   .container-site       page-width wrapper: max-w-6xl, centred, px-4 / sm:px-6
+ *   .section              vertical section rhythm: py-16 / md:py-24
+ *   .headline             poster headline: Unbounded caps, --headline colour, navy drop-shadow (add text-h1 etc.)
+ *   .btn-primary          pink CTA pill, ≥44 px; navy border + sticker shadow in light theme
+ *   .btn-primary-on-band  the CTA for indigo bands (use instead of .btn-primary): navy border
+ *   .btn-secondary        outline pill, electric-blue border, theme text; hover surface-2 (cream on bands)
+ *   .chip                 yellow pill label with black border, caps, ≥44 px tall
+ *   .date-strip           full-width poster-yellow bar, black Poppins 600 caps
+ *   .card                 surface panel, 1 rem radius, border; links inside use --link-on-surface
+ *   .band                 full-width indigo "poster" section; text, links and headlines in cream
+ *   .prose-site           long-form text (governance pages): h2/h3 sentence case, lists, underlined links
+ *   .bg-stripes           lavender/black striped border (footer top, hero bottom only; add h-4 md:h-6)
+ */
 @import "tailwindcss";
 @import "./tokens.css";
 
-/* Striped border (DESIGN.md §4): footer top and hero bottom only. */
 @utility bg-stripes {
   background-image: repeating-linear-gradient(90deg, var(--color-lavender) 0 2.5rem, var(--color-black) 2.5rem 5rem);
 }
 
 @layer base {
-  /* Focus ring (DESIGN.md §4): pink outline + halo so it holds 3:1 on light backgrounds too. */
-  :focus-visible {
-    outline: 3px solid var(--focus-ring);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 8px var(--focus-ring-halo);
+  body {
+    @apply bg-bg font-sans text-base/[1.6] text-text;
   }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto max-w-6xl px-4 sm:px-6;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .headline {
+    @apply font-display text-headline text-shadow-poster uppercase;
+  }
+
+  /* Containers first: the button classes below override their link colours by source order. */
+  .card {
+    @apply rounded-card border border-border bg-surface p-6;
+  }
+  .card :where(a) {
+    @apply text-link-on-surface underline underline-offset-4 hover:decoration-2;
+  }
+  .band {
+    @apply bg-primary text-on-primary;
+  }
+  .band :where(a) {
+    @apply text-on-primary underline underline-offset-4 hover:decoration-2;
+  }
+  .band :where(h1, h2, h3, .headline) {
+    @apply text-on-primary text-shadow-poster;
+  }
+  .prose-site {
+    @apply max-w-prose;
+  }
+  .prose-site :where(h2) {
+    @apply mt-12 mb-4 font-display text-h2 font-extrabold;
+  }
+  .prose-site :where(h3) {
+    @apply mt-8 mb-3 font-display text-h3 font-extrabold;
+  }
+  .prose-site :where(p, ul, ol) {
+    @apply mb-4 text-base/[1.6];
+  }
+  .prose-site :where(ul) {
+    @apply list-disc pl-6;
+  }
+  .prose-site :where(ol) {
+    @apply list-decimal pl-6;
+  }
+  .prose-site :where(li) {
+    @apply mb-2;
+  }
+  .prose-site :where(a) {
+    @apply text-link underline underline-offset-4 hover:decoration-2;
+  }
+
+  .btn-primary,
+  .btn-primary-on-band {
+    @apply inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-cta-border bg-cta px-6 font-semibold text-cta-text no-underline;
+  }
+  .btn-primary:hover,
+  .btn-primary-on-band:hover {
+    box-shadow: 0 0 0.75rem 0.125rem var(--glow); /* lavender glow (dark theme) */
+  }
+  :root[data-theme='light'] :is(.btn-primary, .btn-primary-on-band),
+  :root[data-theme='light'] :is(.btn-primary, .btn-primary-on-band):hover {
+    @apply shadow-poster;
+  }
+  .btn-primary-on-band {
+    @apply border-navy; /* pink on indigo is 2.71:1 */
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-secondary bg-transparent px-6 font-semibold text-text no-underline hover:bg-surface-2;
+  }
+  .band .btn-secondary {
+    @apply border-on-primary text-on-primary hover:bg-navy; /* electric blue on indigo is 1.71:1 */
+  }
+  .chip {
+    @apply inline-flex min-h-11 items-center rounded-full border-2 border-black bg-chip px-3 text-sm font-semibold text-chip-text uppercase;
+  }
+  .date-strip {
+    @apply block w-full bg-chip px-4 py-2 font-semibold text-chip-text uppercase;
+  }
+}
+
+/*
+ * Unlayered on purpose, so no utility or component can override them.
+ * Focus ring (DESIGN.md §4): pink outline + halo so it holds 3:1 on light backgrounds too.
+ */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 8px var(--focus-ring-halo);
+}
+/* No-JS fallback: without the .js class (set by /theme.js) the theme and menu buttons are hidden
+   and the mobile nav stays open; with it, the nav is closed until the menu button opens it. */
+:root:not(.js) [data-js-only],
+:root.js #mobile-nav:not([data-open]) {
+  display: none;
 }
