@@ -8,13 +8,13 @@
 **Last updated:** 2026-09-29 (session restarted after crash; unattended run)
 **Status:** `IN_PROGRESS`
 
-**Working on:** Phase 2 wave A in flight: page-builder → Base layout, Header/Lockup/theme toggle/drawer, Footer, PREVIEW flag, Head (SEO/CSP/JSON-LD), content collections, sitemap, 404. brand-designer → favicon files. Video pipeline done and committed.
+**Working on:** Phase 2. Wave A committed (0a6b48f). page-builder follow-up in flight: shared classes in global.css (.btn-primary/.btn-secondary/.chip/.date-strip/.card/.band/.headline/.container-site/.section/.prose-site), no-JS drawer, toggle label, public/instagram copy. Next: wave B, three page-builders in parallel.
 
-**Last command run:** `npx -y pnpm@10.34.6 build` with tokens.css → 1 page built; built CSS has 5 @font-face, 6× 543fca
+**Last command run:** `pnpm astro check` → 0 errors; `pnpm build` → 2 pages; dist scripts: /theme.js, ld+json, Header bundle (CSP-safe)
 
-**Last known-good checkpoint:** phase 1 committed, build clean, 2026-09-29 00:41
+**Last known-good checkpoint:** wave A committed 0a6b48f, build clean, 2026-09-29 00:49
 
-**Next exact step:** When wave A returns: verify `astro check`, `pnpm build`, no inline `<script>` without src in dist (CSP), robots meta + banner present with PREVIEW=true, dist/robots.txt disallows all, sitemap-index.xml exists. Commit. Then wave B in parallel: page-builder ×3 (Home+About+Join / Committee+Contact / governance pages + Credits), non-overlapping files.
+**Next exact step:** verify the global.css follow-up (build, `.btn-primary`/`.card` in dist CSS, drawer visible in static HTML), commit, then launch wave B in parallel: B1 Home+About+Join (src/pages/index.astro, about.astro, join.astro + Hero/Aims/InstagramGrid components), B2 Committee+Contact (committee.astro, contact.astro + components), B3 code-of-conduct, complaints, constitution, privacy, credits (.astro). Each must read global.css for the shared classes and touch only its own files; Header/Footer/Base/global.css are frozen during wave B.
 
 **Watch out for:** pnpm must run as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_* dirs pointed at $TMPDIR (corepack and pnpm 12 fail in the sandbox). `.claude/skills/ui-ux-pro-max` (catalog-only copy) still on disk; deletion was denied at the permission gate — user to remove by hand. ffmpeg not installed.
 
