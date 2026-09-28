@@ -12,7 +12,7 @@ Phases come from `BRIEF.md` `<phases>`. Commit after each phase.
 **Phase 1: Tooling and design foundation**
 
 - [x] List installed plugins, skills and MCP servers into `/docs/TOOLING.md`
-- [ ] Install the skills named in BRIEF.md `<motion>` (GreenSock's official GSAP skills; Open
+- [x] Install the skills named in BRIEF.md `<motion>` (GreenSock's official GSAP skills; Open
       Design `frontend-design`, `ui-ux-pro-max`, `web-design-guidelines`, `creative-director`,
       `threejs`) if the repositories exist; record in `/docs/TOOLING.md` what installed and what
       didn't
