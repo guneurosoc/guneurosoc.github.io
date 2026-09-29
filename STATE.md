@@ -5,8 +5,8 @@
 
 ---
 
-**Last updated:** 2026-09-29 10:00
-**Status:** `STOPPING_CLEAN`
+**Last updated:** 2026-09-29 10:10
+**Status:** `BLOCKED_ON_USER`
 
 **Working on:** Nothing in progress. Browser QA now run; all Lighthouse targets met except SEO, which is held at 69 by preview-mode noindex on purpose.
 
@@ -14,7 +14,7 @@
 
 **Last known-good checkpoint:** HEAD after the QA commit, 2026-09-29 09:50
 
-**Next exact step:** waiting for the user to confirm the first push (`git push -u origin main`). The push instruction arrived only as pasted text, and it publishes the site, so it needs the user's own go-ahead. After the push, check the Actions deploy run and record the result below.
+**Next exact step:** once the user has given the GitHub token the `workflow` permission, run `git push -u origin main` (outside the sandbox: the credential helper needs its lock file), then check the Actions deploy run and record it under Deploy.
 
 **Watch out for:** pnpm runs as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_*_HOME in $TMPDIR (corepack and pnpm 12 fail in the sandbox). Chromium cannot open sockets in the sandbox. `.claude/skills` is git-ignored (only skills-lock.json is tracked). The 1.6 MB source Instagram PNG is still copied into dist/instagram (unlinked). ffmpeg-static binary was fetched by hand here.
 
@@ -24,7 +24,8 @@
 
 - **Repo:** guneurosoc/guneurosoc.github.io, remote `origin` added 2026-09-29. `SITE_URL` = https://guneurosoc.github.io, PREVIEW on.
 - **Live URL (once deployed):** https://guneurosoc.github.io
-- **Deploy results:** none yet; nothing has been pushed.
+- **Deploy results:**
+  - 2026-09-29 10:10 push REJECTED by GitHub: "refusing to allow a Personal Access Token to create or update workflow `.github/workflows/deploy.yml` without `workflow` scope". Nothing reached GitHub, so no deploy ran. The user needs to add the workflow permission to the token.
 
 ## Needs the user's eyes
 
