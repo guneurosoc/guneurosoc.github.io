@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+
+const SRC_URL = 'https://www.glasgowunisrc.org/organisation/neurosciencesociety/';
+const link = 'text-link underline underline-offset-4 hover:decoration-2';
+---
+
+<Base
+  title="Join"
+  description="How to join GU NeuroSoc: membership is bought on the Glasgow University SRC website in five steps. Open to all University of Glasgow students."
+>
+  <div class="container-site section">
+    <h1 class="headline text-h1 font-black">Join</h1>
+    <p class="mt-6 max-w-prose text-lead">
+      Membership is bought on the SRC website. We never handle payment ourselves. It takes five steps:
+    </p>
+
+    <div class="mt-12 grid items-start gap-12 md:grid-cols-[20rem_1fr]">
+      <figure class="mx-auto w-full max-w-[20rem]">
+        <div class="overflow-hidden rounded-[2.5rem] border-8 border-navy bg-night shadow-poster">
+          <video
+            controls
+            playsinline
+            preload="none"
+            poster="/video/how-to-join-poster.jpg"
+            width="720"
+            height="1280"
+            class="block h-auto w-full"
+          >
+            <source src="/video/how-to-join.webm" type="video/webm" />
+            <source src="/video/how-to-join.mp4" type="video/mp4" />
+            <track kind="captions" src="/video/how-to-join.vtt" srclang="en" label="English" default />
+            <p class="p-4 text-text-on-dark">
+              Your browser can't play this video. The same five steps are listed on this page, or you can
+              <a href="/video/how-to-join.mp4" class="underline underline-offset-4">download the video (MP4)</a>.
+            </p>
+          </video>
+        </div>
+        <figcaption class="mt-3 text-center text-sm text-text-muted">
+          The committee's how-to-join video, with captions.
+        </figcaption>
+      </figure>
+
+      <div>
+        <h2 class="headline text-h2 font-extrabold">Five steps</h2>
+        <ol class="mt-6 list-decimal space-y-3 pl-6 text-lead marker:font-semibold">
+          <li>
+            Go to the <a href={SRC_URL} rel="noopener" class={link}>SRC website</a> and log in, or create an account with
+            your Uni email.
+          </li>
+          <li>Head to “Find a club or society”.</li>
+          <li>Search “Neuroscience” and click on us.</li>
+          <li>Click “Add to Basket” for the Standard membership.</li>
+          <li>Go to your basket and proceed to checkout — and you're officially a member.</li>
+        </ol>
+
+        <p class="mt-8 text-lead"><strong class="font-semibold">Standard membership:</strong> {'{{PRICE}}'}</p>
+
+        <p class="mt-8">
+          <a href={SRC_URL} rel="noopener" class="btn-primary min-h-14 px-8 text-lead">
+            Join on the SRC website<span aria-hidden="true">→</span>
+          </a>
+        </p>
+
+        <p class="mt-8 max-w-prose">
+          <strong class="font-semibold">Not a student?</strong> Associate membership is open to non-students. Associate
+          members don't have voting rights, and make up no more than 20% of the membership.
+        </p>
+      </div>
+    </div>
+
+    <section aria-labelledby="stay-in-touch" class="mt-16">
+      <h2 id="stay-in-touch" class="headline text-h2 font-extrabold">Stay in touch</h2>
+      <ul class="mt-6 space-y-2 text-lead" role="list">
+        <li><strong class="font-semibold">Mailing list:</strong> {'{{MS_FORMS_URL}}'}</li>
+        <li><strong class="font-semibold">Group chat:</strong> {'{{CHAT_URL}}'}</li>
+      </ul>
+      <p class="mt-3 text-sm text-text-muted">Links to be confirmed by the committee.</p>
+      <p class="mt-6 max-w-prose">
+        Events and updates are posted on Instagram:
+        <a href="https://instagram.com/guneurosci" rel="noopener" class={link}>@guneurosci</a>.
+      </p>
+    </section>
+  </div>
+</Base>

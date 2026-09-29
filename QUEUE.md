@@ -44,20 +44,20 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 - [x] page-builder: footer — Instagram, Facebook, X, SRC join link; Code of Conduct, Complaints, Constitution, Privacy, Credits links; affiliation line; © current year
 - [x] page-builder: `PREVIEW` flag (default true) — banner on every page, `noindex` meta, robots.txt disallow-all; all three removed when false
 - [x] page-builder: content collections `src/content/committee.json` and `src/content/previous-committees.json` (seeded with schema, no entries) with Zod schemas
-- [ ] page-builder: Home — hero slot (poster image until phase 3), wordmark, one-line pitch from the About copy, CTAs "Become a member" → /join and "What's on → @guneurosci"; four aims cards; "Latest from Instagram" static grid from `/public/instagram/` linking to the profile with the follow line; join band; Glasgow Neuro one-liner
-- [ ] page-builder: About — four aims, full vs associate membership, equal-opportunities commitment, what we do; no history or founding year
-- [x] (pipeline done early: public/video/*, scripts/build-video.mjs, docs/VIDEO.md; Join page itself still open) page-builder: Join — video pipeline from `/video/how-to-join.mp4` (MP4 ≤ 2 MB + WebM, poster frame, `.vtt` captions from the five steps, `<video controls playsinline preload="none">` in a portrait phone frame); five steps as text; SRC button; `{{PRICE}}`; associate note; `{{MS_FORMS_URL}}` and `{{CHAT_URL}}` buttons; page works without the video
+- [x] page-builder: Home — hero slot (poster image until phase 3), wordmark, one-line pitch from the About copy, CTAs "Become a member" → /join and "What's on → @guneurosci"; four aims cards; "Latest from Instagram" static grid from `/public/instagram/` linking to the profile with the follow line; join band; Glasgow Neuro one-liner
+- [x] page-builder: About — four aims, full vs associate membership, equal-opportunities commitment, what we do; no history or founding year
+- [x] (pipeline + page done) page-builder: Join — video pipeline from `/video/how-to-join.mp4` (MP4 ≤ 2 MB + WebM, poster frame, `.vtt` captions from the five steps, `<video controls playsinline preload="none">` in a portrait phone frame); five steps as text; SRC button; `{{PRICE}}`; associate note; `{{MS_FORMS_URL}}` and `{{CHAT_URL}}` buttons; page works without the video
 - [x] page-builder: Committee — six role cards (President's name only, rest placeholders), neuron-style SVG placeholder avatars; "Previous committees" from the JSON; "Join the committee" explainer from the governance facts
 - [x] page-builder: Contact — topic select (Outlook deep link omitted: untestable here) building a `mailto:` with subject and body; "Copy email" button; "Open in Outlook on the web" link only if tested and working; social links; `{{WELFARE_EMAIL}}` line; no map
-- [ ] page-builder: Code of Conduct — plain-English summary from `<facts>`, links to the SRC text and PDF
-- [ ] page-builder: Complaints — the process from `<facts>`, with the SRC procedure link
-- [ ] page-builder: Constitution — render `/content/constitution.docx` or `.md` verbatim with TOC and download links if present; otherwise download placeholder and adoption date 14 August 2026; never paraphrase
-- [ ] page-builder: Privacy — no cookies/analytics/forms; SRC handles membership and tickets (link); emails under the constitution's data-protection clause; localStorage for theme only
-- [ ] page-builder: Credits — every third-party asset with author, source URL and licence (from `ASSETS.md`)
+- [x] page-builder: Code of Conduct — plain-English summary from `<facts>`, links to the SRC text and PDF
+- [x] page-builder: Complaints — the process from `<facts>`, with the SRC procedure link
+- [x] page-builder: Constitution — render `/content/constitution.docx` or `.md` verbatim with TOC and download links if present; otherwise download placeholder and adoption date 14 August 2026; never paraphrase
+- [x] page-builder: Privacy — no cookies/analytics/forms; SRC handles membership and tickets (link); emails under the constitution's data-protection clause; localStorage for theme only
+- [x] page-builder: Credits — every third-party asset with author, source URL and licence (from `ASSETS.md`)
 - [x] page-builder: 404 — "This synapse doesn't connect."
 - [ ] page-builder: per-page meta, build-time OG images, sitemap, robots, canonical URLs, JSON-LD Organization, CSP meta from `<technical>`
-- [ ] page-builder: create `/TODO.md` listing every `{{PLACEHOLDER}}` and "source logo file"
-- [ ] Verify: `astro check` clean, build passes, all eleven pages render
+- [x] page-builder: create `/TODO.md` listing every `{{PLACEHOLDER}}` and "source logo file"
+- [x] Verify: `astro check` clean, build passes, all eleven pages render (11 pages built 2026-09-29 00:59)
 - [ ] Commit phase 2
 
 ### Phase 3 — Motion

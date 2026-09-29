@@ -1,7 +1,121 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+import { imageMetadata } from 'astro/assets/utils';
 import Base from '../layouts/Base.astro';
+import HomeHero from '../components/HomeHero.astro';
+
+const aims = [
+  {
+    title: 'Bring people together',
+    text: 'We connect people interested in neuroscience, particularly in the School of Psychology & Neuroscience, across every year group.',
+  },
+  {
+    title: 'Relaxed socials',
+    text: 'Informal socials where friendships and network contacts can form.',
+  },
+  {
+    title: 'Coursework support',
+    text: 'Help with coursework in a less formal setting, especially for younger students.',
+  },
+  {
+    title: 'Current research',
+    text: 'We raise awareness of current neuroscience research, so you can keep up with advances and breakthroughs.',
+  },
+];
+
+// Static Instagram images, read at build time. Filename pattern: <slug>-YYYY-MM-DD.<ext>
+const igDir = path.join(process.cwd(), 'public/instagram');
+const igFiles = fs
+  .readdirSync(igDir)
+  .filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))
+  .sort()
+  .reverse();
+const posts = await Promise.all(
+  igFiles.map(async (file) => {
+    const { width, height } = await imageMetadata(fs.readFileSync(path.join(igDir, file)), file);
+    const m = file.match(/^(?:(.+?)-)?(\d{4})-(\d{2})-(\d{2})\.\w+$/);
+    let alt = 'Instagram post from @guneurosci';
+    if (m) {
+      const date = new Date(Date.UTC(+m[2], +m[3] - 1, +m[4])).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      });
+      alt += m[1] ? `: ${m[1].replace(/-/g, ' ')}, ${date}` : `, ${date}`;
+    }
+    return { src: `/instagram/${file}`, width, height, alt };
+  }),
+);
 ---
 
-<Base description="Glasgow University Neuroscience Society (GU NeuroSoc), affiliated to the Glasgow University Students' Representative Council: how to join, the committee, and how to get in touch.">
-  <h1>GU NeuroSoc</h1>
+<Base description="Glasgow University Neuroscience Society (GU NeuroSoc): open to all University of Glasgow students, whether studying neuroscience or just keenly interested. Membership is bought on the SRC website.">
+  <HomeHero />
+
+  <section aria-labelledby="aims-title" class="section">
+    <div class="container-site">
+      <h2 id="aims-title" class="headline text-h2 font-extrabold">Our aims</h2>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
+        {
+          aims.map((aim) => (
+            <li class="card">
+              <h3 class="font-display text-h3 font-extrabold">{aim.title}</h3>
+              <p class="mt-3">{aim.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="ig-title" class="section pt-0 md:pt-0">
+    <div class="container-site">
+      <h2 id="ig-title" class="headline text-h2 font-extrabold">Latest from Instagram</h2>
+      <p class="mt-4 text-lead">
+        All events and updates are posted on Instagram — follow
+        <a href="https://instagram.com/guneurosci" rel="noopener" class="text-link underline underline-offset-4 hover:decoration-2">@guneurosci</a>
+      </p>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+        {
+          posts.map((post) => (
+            <li>
+              <a href="https://instagram.com/guneurosci" rel="noopener" class="block rounded-card">
+                <img
+                  src={post.src}
+                  width={post.width}
+                  height={post.height}
+                  alt={post.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-auto w-full rounded-card border border-border"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="join-band-title" class="band section">
+    <div class="container-site">
+      <h2 id="join-band-title" class="headline text-h2 font-extrabold">Become a member</h2>
+      <p class="mt-4 max-w-prose text-lead">
+        Membership is bought on the SRC website in five quick steps. We'll walk you through them.
+      </p>
+      <p class="mt-8">
+        <a href="/join" class="btn-primary-on-band">How to join</a>
+      </p>
+    </div>
+  </section>
+
+  <section aria-label="Clinical neuroscience" class="py-12">
+    <div class="container-site">
+      <p class="text-lead">
+        Here for clinical neurology or neurosurgery? Say hello to our sister society,
+        <a href="https://www.glasgowneuro.co.uk" rel="noopener" class="text-link underline underline-offset-4 hover:decoration-2">Glasgow Neuro</a>.
+      </p>
+    </div>
+  </section>
 </Base>

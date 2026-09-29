@@ -1,0 +1,41 @@
+---
+// Home hero. #brain-hero is reserved for the 3D brain (built later); until then it is an empty glow panel.
+---
+
+<section aria-labelledby="hero-title" class="relative">
+  <div class="container-site grid items-center gap-10 py-12 md:grid-cols-2 md:py-20">
+    <div>
+      <h1 id="hero-title">
+        <span class="block text-lead font-semibold text-text-muted">Glasgow University Neuroscience Society</span>
+        <span class="headline mt-3 block text-hero font-black">GU NeuroSoc</span>
+      </h1>
+      <p class="mt-6 max-w-prose text-lead">
+        Open to all University of Glasgow students, whether you study neuroscience or are just keenly interested.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/join" class="btn-primary">Become a member</a>
+        <a href="https://instagram.com/guneurosci" rel="noopener" class="btn-secondary">
+          What's on → @guneurosci<span class="sr-only"> (Instagram)</span>
+        </a>
+      </div>
+    </div>
+    <div
+      id="brain-hero"
+      data-brain-hero
+      aria-hidden="true"
+      class="brain-glow aspect-square w-full rounded-card border border-border bg-surface md:aspect-[4/3]"
+    >
+    </div>
+  </div>
+  <div class="bg-stripes h-4 md:h-6" aria-hidden="true"></div>
+</section>
+
+<style>
+  .brain-glow {
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in srgb, var(--glow) 28%, transparent),
+      transparent 65%
+    );
+  }
+</style>
