@@ -5,10 +5,10 @@
 
 ---
 
-**Last updated:** 2026-09-29 11:05
+**Last updated:** 2026-09-29 11:10
 **Status:** `STOPPING_CLEAN`
 
-**Working on:** deploying the user's committee / home / brain-hero changes.
+**Working on:** Nothing in progress. User changes (committee years/VP, no sister society, more spike dividers, brain hero fixes) are live.
 
 **Last command run:** astro build → 11 pages; astro check + tsc 0 errors; Lighthouse/screenshot/keyboard QA via /tmp/claude-1000/qa/run.mjs (needs sandbox off)
 
@@ -28,7 +28,8 @@
   - 2026-09-29 10:10 push REJECTED by GitHub: "refusing to allow a Personal Access Token to create or update workflow `.github/workflows/deploy.yml` without `workflow` scope". Nothing reached GitHub, so no deploy ran. The user needs to add the workflow permission to the token.
   - 2026-09-29 10:30 second push REJECTED with the same error. The token sent still lacks workflow permission. Side effect: git's credential "approve" step rewrote both stores at 10:30, so the token is now also in ~/.git-credentials (global `store` helper in ~/.gitconfig). Not read; user told.
   - 2026-09-29 10:45 user supplied a new token with repo + workflow scopes; both credential stores updated. Push of 7716781 OK. Run 36550357426 (build + deploy) **success**: https://github.com/guneurosoc/guneurosoc.github.io/actions/runs/36550357426. /, /join/, /robots.txt return 200.
-  - 2026-09-29 10:55 push of 60bee78 (STATE update): run 36550527132 **success**. This note is committed locally and goes up with the next push.
+  - 2026-09-29 10:55 push of 60bee78 (STATE update): run 36550527132 **success**. Pushed with 56044c3.
+  - 2026-09-29 11:08 push of 56044c3 (committee years + VP, sister society removed, dividers, brain hero): run 36553361222 **success**. Live /committee/ shows the Vice-President and Year labels; Home has the new hero and no Glasgow Neuro link. This note is committed locally and goes up with the next push.
 
 ## Needs the user's eyes
 
