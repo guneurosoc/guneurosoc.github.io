@@ -77,7 +77,7 @@ const buttonClass =
   const root = document.documentElement;
   root.classList.add('js'); // normally already set by /theme.js
 
-  // Theme toggle: data-theme="light" on <html>; no attribute = dark (the default).
+  // Theme toggle: data-theme="light" on <html>; no attribute = dark. /theme.js sets light by default.
   const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
   const label = toggle?.querySelector('[data-theme-label]');
   const sun = toggle?.querySelector<SVGElement>('[data-icon="sun"]');

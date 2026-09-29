@@ -8,7 +8,7 @@ Contrast ratios below are WCAG 2.x, computed from the hex values (sRGB relative 
 
 ## 1. Colour roles
 
-Dark is the default (`:root`). Light is `:root[data-theme="light"]`, set by the header toggle and kept in localStorage. There is no `prefers-color-scheme` switching, because the brief says dark by default.
+Dark is the base CSS (`:root`). Light is `:root[data-theme="light"]`, which `/theme.js` sets by default before first paint (committee request, 2026-09-29, overriding the brief's dark default); the header toggle switches and localStorage keeps the choice. Without JS the page stays dark. There is no `prefers-color-scheme` switching.
 
 | Token | Dark | Light | Used for |
 |---|---|---|---|
@@ -232,7 +232,7 @@ For the committee to confirm and add to the guide.
 19. **Only two shadow kinds:** the hard navy "sticker" offset and the lavender glow.
 20. **Striped border geometry:** 2.5 rem blocks, 1–1.5 rem tall, used at the hero bottom and footer top only.
 21. **Tailwind's default colour palette is removed,** so only the 14 brand colours are available.
-22. **No automatic OS theme switching.** Dark is the default until the user toggles.
+22. **No automatic OS theme switching.** Light is the default (committee request, 2026-09-29) until the user toggles.
 23. **Unbounded is subset to Latin-1 plus common punctuation, €, ™.** Glyphs outside it fall back to Archivo Black.
 24. **Motion colour roles** as tabled above (pink divider stroke, lavender glow, pink firing pulses).
 25. **Favicons are the whole logo downscaled;** a text-free brain mark in /brand would allow a cleaner favicon (for the committee).
