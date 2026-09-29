@@ -5,7 +5,7 @@
 
 ---
 
-**Last updated:** 2026-09-29 10:10
+**Last updated:** 2026-09-29 10:32
 **Status:** `BLOCKED_ON_USER`
 
 **Working on:** Nothing in progress. Browser QA now run; all Lighthouse targets met except SEO, which is held at 69 by preview-mode noindex on purpose.
@@ -26,6 +26,7 @@
 - **Live URL (once deployed):** https://guneurosoc.github.io
 - **Deploy results:**
   - 2026-09-29 10:10 push REJECTED by GitHub: "refusing to allow a Personal Access Token to create or update workflow `.github/workflows/deploy.yml` without `workflow` scope". Nothing reached GitHub, so no deploy ran. The user needs to add the workflow permission to the token.
+  - 2026-09-29 10:30 second push REJECTED with the same error. The token sent still lacks workflow permission. Side effect: git's credential "approve" step rewrote both stores at 10:30, so the token is now also in ~/.git-credentials (global `store` helper in ~/.gitconfig). Not read; user told.
 
 ## Needs the user's eyes
 
