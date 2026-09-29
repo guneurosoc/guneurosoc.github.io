@@ -71,9 +71,9 @@ mm.add(MOTION, () => {
   };
 });
 
-// Magnetic buttons: fine pointers only.
+// Magnetic buttons (including the band CTA): fine pointers only.
 mm.add(`${MOTION} and (pointer: fine)`, () => {
-  const offs = gsap.utils.toArray<HTMLElement>('.btn-primary, .btn-secondary').map((btn) => {
+  const offs = gsap.utils.toArray<HTMLElement>('.btn-primary, .btn-primary-on-band, .btn-secondary').map((btn) => {
     const x = gsap.quickTo(btn, 'x', { duration: MAGNET_DURATION, ease: 'power3.out' });
     const y = gsap.quickTo(btn, 'y', { duration: MAGNET_DURATION, ease: 'power3.out' });
     const move = (e: PointerEvent) => {

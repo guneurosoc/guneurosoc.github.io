@@ -1,7 +1,7 @@
 ---
 // Static poster + loader for the 3D brain. Render inside the `[data-brain-hero]` container (HomeHero.astro).
 // The poster is the default; brain-scene.ts is imported only when the hero is near the viewport,
-// prefers-reduced-motion is no-preference, and WebGL2 is available. See README.md in this folder.
+// prefers-reduced-motion is no-preference, Save-Data is off, and WebGL2 is available. See README.md in this folder.
 ---
 
 <img
@@ -54,8 +54,11 @@
     }
   }
 
+  // Save-Data (Network Information API, Chromium only): keep the poster, skip the ~1 MB model.
+  const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+
   function start() {
-    if (!el || io || dispose || !motionOK.matches) return;
+    if (!el || io || dispose || !motionOK.matches || saveData) return;
     const gen = generation;
     io = new IntersectionObserver(async (entries) => {
       if (!entries.some((e) => e.isIntersecting)) return;

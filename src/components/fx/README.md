@@ -23,7 +23,8 @@ Files: `BrainHero.astro` (poster + loader, eager), `brain-scene.ts` (lazy chunk)
 - The default is the static poster `public/hero-poster.svg` (`<img alt="" loading="eager" fetchpriority="high">`).
 - `brain-scene.ts`, three.js and the model (`/assets/models/brain.glb`, "Brain" by dgallichan, CC BY 4.0) load
   only when all of these hold: the hero is within `NEAR_MARGIN` of the viewport,
-  `prefers-reduced-motion: no-preference` matches, and a WebGL2 context can be created. Otherwise the poster stays.
+  `prefers-reduced-motion: no-preference` matches, `navigator.connection?.saveData` is not `true`, and a WebGL2
+  context can be created. Otherwise the poster stays.
 - Model: vertex colours are deleted and the material becomes a black, slightly glossy `MeshStandardMaterial`,
   lit by a white key light and a deep-violet rim light.
 - Network: `CANDIDATES` points are sampled on the surface (`MeshSurfaceSampler`, seeded). Only points on the
@@ -50,6 +51,7 @@ Files: `BrainHero.astro` (poster + loader, eager), `brain-scene.ts` (lazy chunk)
 | Constant | Value | File |
 |---|---|---|
 | `NEAR_MARGIN` | `'200px'` | BrainHero.astro |
+| Save-Data check | `navigator.connection?.saveData === true` keeps the poster and never loads the scene (Chromium exposes it; other browsers load as normal) | BrainHero.astro |
 | `NODE_COUNT` | 200 | brain-scene.ts |
 | `NODE_SEED` | 20260929 (the poster uses the same seed) | brain-scene.ts |
 | `NODE_SIZE` | 9 (CSS px at camera distance 3, × DPR) | brain-scene.ts |
@@ -136,7 +138,7 @@ File: `fx.ts`.
 
 ## 5. Magnetic buttons
 
-File: `fx.ts`. Targets: `.btn-primary`, `.btn-secondary`.
+File: `fx.ts`. Targets: `.btn-primary`, `.btn-primary-on-band`, `.btn-secondary`.
 
 - The button follows the pointer by up to `MAGNET_MAX` px on each axis (`gsap.quickTo` on x/y) and springs
   back on `pointerleave`.
