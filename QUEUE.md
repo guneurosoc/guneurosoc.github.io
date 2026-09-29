@@ -55,10 +55,10 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 - [x] page-builder: Privacy — no cookies/analytics/forms; SRC handles membership and tickets (link); emails under the constitution's data-protection clause; localStorage for theme only
 - [x] page-builder: Credits — every third-party asset with author, source URL and licence (from `ASSETS.md`)
 - [x] page-builder: 404 — "This synapse doesn't connect."
-- [ ] page-builder: per-page meta, build-time OG images, sitemap, robots, canonical URLs, JSON-LD Organization, CSP meta from `<technical>`
+- [x] page-builder: per-page meta, build-time OG images (satori + resvg endpoint, 12 PNGs), sitemap, robots, canonical URLs, JSON-LD Organization, CSP meta from `<technical>`
 - [x] page-builder: create `/TODO.md` listing every `{{PLACEHOLDER}}` and "source logo file"
 - [x] Verify: `astro check` clean, build passes, all eleven pages render (11 pages built 2026-09-29 00:59)
-- [ ] Commit phase 2
+- [x] Commit phase 2
 
 ### Phase 3 — Motion
 
