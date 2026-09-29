@@ -4,6 +4,8 @@ import path from 'node:path';
 import { imageMetadata } from 'astro/assets/utils';
 import Base from '../layouts/Base.astro';
 import HomeHero from '../components/HomeHero.astro';
+import ActionPotential from '../components/fx/ActionPotential.astro';
+import Lottie from '../components/fx/Lottie.astro';
 
 const aims = [
   {
@@ -69,6 +71,8 @@ const posts = await Promise.all(
     </div>
   </section>
 
+  <div class="container-site"><ActionPotential /></div>
+
   <section aria-labelledby="ig-title" class="section pt-0 md:pt-0">
     <div class="container-site">
       <h2 id="ig-title" class="headline text-h2 font-extrabold">Latest from Instagram</h2>
@@ -100,7 +104,10 @@ const posts = await Promise.all(
 
   <section aria-labelledby="join-band-title" class="band section">
     <div class="container-site">
-      <h2 id="join-band-title" class="headline text-h2 font-extrabold">Become a member</h2>
+      <div class="flex items-center gap-3">
+        <h2 id="join-band-title" class="headline text-h2 font-extrabold">Become a member</h2>
+        <Lottie src="noto-sparkles.json" size={56} />
+      </div>
       <p class="mt-4 max-w-prose text-lead">
         Membership is bought on the SRC website in five quick steps. We'll walk you through them.
       </p>

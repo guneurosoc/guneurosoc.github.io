@@ -1,0 +1,76 @@
+---
+// Small decorative Lottie (Animated Noto Emoji, CC BY 4.0, see brand/ASSETS.md). Renders an empty box;
+// lottie_light is imported only when the box nears the viewport. Loops while visible and the tab is
+// shown; with reduced motion it shows the first frame only. See README.md in this folder.
+interface Props {
+  /** File in public/assets/lottie/ (only files listed in brand/ASSETS.md). */
+  src: 'noto-sparkles.json' | 'noto-high-voltage.json';
+  /** Box size in px. */
+  size?: number;
+  class?: string;
+}
+const { src, size = 48, class: className } = Astro.props;
+---
+
+<span
+  data-fx-lottie={`/assets/lottie/${src}`}
+  aria-hidden="true"
+  class:list={['inline-block shrink-0 align-middle', className]}
+  style={`width:${size}px;height:${size}px`}></span>
+
+<script>
+  import type { AnimationItem } from 'lottie-web';
+
+  const NEAR_MARGIN = '100px';
+  const els = document.querySelectorAll<HTMLElement>('[data-fx-lottie]');
+  const motionOK = matchMedia('(prefers-reduced-motion: no-preference)');
+  const anims = new Map<Element, AnimationItem>();
+  const visible = new Set<Element>();
+  const requested = new Set<Element>(); // load each animation once
+
+  const sync = () =>
+    anims.forEach((anim, el) => {
+      if (!motionOK.matches) anim.goToAndStop(0, true);
+      else if (visible.has(el) && !document.hidden) anim.play();
+      else anim.pause();
+    });
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const { target, isIntersecting } of entries) {
+        if (isIntersecting) visible.add(target);
+        else visible.delete(target);
+        if (isIntersecting && !requested.has(target)) {
+          requested.add(target);
+          const container = target as HTMLElement;
+          import('lottie-web/build/player/lottie_light').then(({ default: lottie }) => {
+            const anim = lottie.loadAnimation({
+              container,
+              renderer: 'svg',
+              loop: true,
+              autoplay: false,
+              path: container.dataset.fxLottie,
+            });
+            anim.addEventListener('DOMLoaded', sync);
+            anims.set(container, anim);
+          });
+        }
+      }
+      sync();
+    },
+    { rootMargin: NEAR_MARGIN },
+  );
+
+  els.forEach((el) => io.observe(el));
+  document.addEventListener('visibilitychange', sync);
+  motionOK.addEventListener('change', sync);
+  document.addEventListener(
+    'astro:before-swap',
+    () => {
+      io.disconnect();
+      anims.forEach((anim) => anim.destroy());
+      anims.clear();
+    },
+    { once: true },
+  );
+</script>

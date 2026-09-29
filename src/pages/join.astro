@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Lottie from '../components/fx/Lottie.astro';
 
 const SRC_URL = 'https://www.glasgowunisrc.org/organisation/neurosciencesociety/';
 const link = 'text-link underline underline-offset-4 hover:decoration-2';
@@ -54,7 +55,10 @@ const link = 'text-link underline underline-offset-4 hover:decoration-2';
           <li>Go to your basket and proceed to checkout — and you're officially a member.</li>
         </ol>
 
-        <p class="mt-8 text-lead"><strong class="font-semibold">Standard membership:</strong> {'{{PRICE}}'}</p>
+        <p class="mt-8 flex items-center gap-2 text-lead">
+          <Lottie src="noto-high-voltage.json" size={40} />
+          <span><strong class="font-semibold">Standard membership:</strong> {'{{PRICE}}'}</span>
+        </p>
 
         <p class="mt-8">
           <a href={SRC_URL} rel="noopener" class="btn-primary min-h-14 px-8 text-lead">

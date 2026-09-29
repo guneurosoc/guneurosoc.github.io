@@ -1,5 +1,6 @@
 ---
-// Home hero. #brain-hero is reserved for the 3D brain (built later); until then it is an empty glow panel.
+// Home hero. #brain-hero holds the 3D brain (fx/BrainHero.astro): a static poster, upgraded to WebGL when allowed.
+import BrainHero from './fx/BrainHero.astro';
 ---
 
 <section aria-labelledby="hero-title" class="relative">
@@ -7,7 +8,7 @@
     <div>
       <h1 id="hero-title">
         <span class="block text-lead font-semibold text-text-muted">Glasgow University Neuroscience Society</span>
-        <span class="headline mt-3 block text-hero font-black">GU NeuroSoc</span>
+        <span class="headline mt-3 block text-hero font-black" data-fx-split>GU NeuroSoc</span>
       </h1>
       <p class="mt-6 max-w-prose text-lead">
         Open to all University of Glasgow students, whether you study neuroscience or are just keenly interested.
@@ -23,8 +24,9 @@
       id="brain-hero"
       data-brain-hero
       aria-hidden="true"
-      class="brain-glow aspect-square w-full rounded-card border border-border bg-surface md:aspect-[4/3]"
+      class="brain-glow relative aspect-square w-full overflow-hidden rounded-card border border-border bg-surface md:aspect-[4/3]"
     >
+      <BrainHero />
     </div>
   </div>
   <div class="bg-stripes h-4 md:h-6" aria-hidden="true"></div>

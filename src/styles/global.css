@@ -122,3 +122,30 @@
 :root.js #mobile-nav:not([data-open]) {
   display: none;
 }
+
+/* ==========================================================================
+ * fx: synapse-glow on cards (DESIGN.md §5, src/components/fx/README.md)
+ * Hover and :focus-within move the border to --glow and add a lavender glow. The focus ring stays on
+ * the focused element inside the card. Reduced motion drops the transition but keeps the end state.
+ * ========================================================================== */
+.card {
+  transition:
+    box-shadow 200ms ease-out,
+    border-color 200ms ease-out;
+}
+.card:hover,
+.card:focus-within {
+  border-color: var(--glow);
+  box-shadow: 0 0 1.25rem 0.125rem color-mix(in srgb, var(--glow) 55%, transparent);
+}
+/* If a card is itself focused, keep the focus-ring halo alongside the glow. */
+.card:focus-visible {
+  box-shadow:
+    0 0 0 8px var(--focus-ring-halo),
+    0 0 1.25rem 0.125rem color-mix(in srgb, var(--glow) 55%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

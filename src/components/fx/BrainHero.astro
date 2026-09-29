@@ -1,0 +1,90 @@
+---
+// Static poster + loader for the 3D brain. Render inside the `[data-brain-hero]` container (HomeHero.astro).
+// The poster is the default; brain-scene.ts is imported only when the hero is near the viewport,
+// prefers-reduced-motion is no-preference, and WebGL2 is available. See README.md in this folder.
+---
+
+<img
+  src="/hero-poster.svg"
+  alt=""
+  width="1200"
+  height="900"
+  loading="eager"
+  fetchpriority="high"
+  decoding="async"
+  class="brain-poster absolute inset-0 h-full w-full object-contain"
+/>
+
+<style is:global>
+  [data-brain-hero] > canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 250ms ease-out;
+  }
+  [data-brain-hero][data-brain-ready] > canvas {
+    opacity: 1;
+  }
+  [data-brain-hero] > .brain-poster {
+    transition: opacity 250ms ease-out;
+  }
+  [data-brain-hero][data-brain-ready] > .brain-poster {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  const NEAR_MARGIN = '200px'; // start loading this far before the hero scrolls into view
+
+  const el = document.querySelector<HTMLElement>('[data-brain-hero]');
+  const motionOK = matchMedia('(prefers-reduced-motion: no-preference)');
+  let io: IntersectionObserver | undefined;
+  let dispose: (() => void) | undefined;
+  let generation = 0; // bumps on stop(), so a mount that finishes late is thrown away
+
+  function hasWebGL2() {
+    try {
+      const gl = document.createElement('canvas').getContext('webgl2');
+      gl?.getExtension('WEBGL_lose_context')?.loseContext();
+      return !!gl;
+    } catch {
+      return false;
+    }
+  }
+
+  function start() {
+    if (!el || io || dispose || !motionOK.matches) return;
+    const gen = generation;
+    io = new IntersectionObserver(async (entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io?.disconnect();
+      io = undefined;
+      if (!hasWebGL2()) return; // keep the poster
+      try {
+        const { mount } = await import('./brain-scene');
+        const d = await mount(el);
+        if (gen === generation && motionOK.matches) dispose = d;
+        else d();
+      } catch (err) {
+        console.warn('Brain hero: showing the static poster.', err);
+      }
+    }, { rootMargin: NEAR_MARGIN });
+    io.observe(el);
+  }
+
+  function stop() {
+    generation++;
+    io?.disconnect();
+    io = undefined;
+    dispose?.();
+    dispose = undefined;
+  }
+
+  motionOK.addEventListener('change', () => (motionOK.matches ? start() : stop()));
+  document.addEventListener('astro:before-swap', stop);
+  addEventListener('pagehide', stop);
+  addEventListener('pageshow', (e) => e.persisted && start());
+  start();
+</script>

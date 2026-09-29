@@ -236,3 +236,4 @@ For the committee to confirm and add to the guide.
 23. **Unbounded is subset to Latin-1 plus common punctuation, €, ™.** Glyphs outside it fall back to Archivo Black.
 24. **Motion colour roles** as tabled above (pink divider stroke, lavender glow, pink firing pulses).
 25. **Favicons are the whole logo downscaled;** a text-free brain mark in /brand would allow a cleaner favicon (for the committee).
+26. **Lottie decorations use Animated Noto Emoji colours** (sparkles, high voltage), which are not the 14 brand colours. Recorded as an exception to "motion never adds an off-palette colour" for the committee to confirm or replace with brand-coloured animations.

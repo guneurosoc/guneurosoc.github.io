@@ -64,12 +64,12 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 
 - [x] asset-scout: find a CC0 or CC-BY brain model (Sketchfab, NIH 3D), confirm licence, record author/URL/licence in `ASSETS.md`
 - [x] asset-scout: find free Lottie decorations (done early; LottieFiles unreachable from the sandbox, three Animated Noto Emoji CC BY 4.0 used instead) on LottieFiles, confirm licences, record in `ASSETS.md`
-- [ ] motion-3d: 3D brain hero — black surface, glowing pink/blue/sky/violet node network, random and pointer-near firing, slow idle rotation, drag to spin, subtle bloom; lazy-loaded; static poster for reduced motion and no-WebGL
-- [ ] motion-3d: SplitText on the hero line; DrawSVG action-potential divider; magnetic buttons; synapse-glow on card hover/focus; poster-tilt on chips; Lottie decorations
-- [ ] motion-3d: every effect respects prefers-reduced-motion, pauses offscreen and on hidden tab; ≤ ~150 KB gzipped JS per page excluding the lazy 3D scene
-- [ ] motion-3d: document each effect and its tuning constants in `src/components/fx/README.md`
-- [ ] Verify: build passes, bundle size within budget, hero falls back correctly
-- [ ] Commit phase 3
+- [x] motion-3d: 3D brain hero — black surface, glowing pink/blue/sky/violet node network, random and pointer-near firing, slow idle rotation, drag to spin, subtle bloom; lazy-loaded; static poster for reduced motion and no-WebGL
+- [x] motion-3d: SplitText on the hero line; DrawSVG action-potential divider; magnetic buttons; synapse-glow on card hover/focus; poster-tilt on chips; Lottie decorations
+- [x] motion-3d: every effect respects prefers-reduced-motion, pauses offscreen and on hidden tab; ≤ ~150 KB gzipped JS per page excluding the lazy 3D scene
+- [x] motion-3d: document each effect and its tuning constants in `src/components/fx/README.md`
+- [x] Verify: build passes, bundle size within budget (54.6–57.1 KB gz eager; brain chunk 155 KB lazy), poster present; WebGL behaviour unverified (no browser)
+- [x] Commit phase 3
 
 ### Phase 4 — QA, docs, deploy
 

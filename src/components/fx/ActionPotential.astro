@@ -1,0 +1,22 @@
+---
+// Action-potential squiggle used as a section divider (resting line, sharp spike, undershoot, recovery).
+// Decorative. fx.ts draws it on scroll with DrawSVG; without JS or with reduced motion it is simply drawn.
+// Stroke hot pink, spike tip poster yellow (DESIGN.md §5). See README.md in this folder.
+const gradientId = `ap-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<svg data-fx-ap aria-hidden="true" viewBox="0 0 1200 120" class="block h-auto w-full" fill="none" focusable="false">
+  <defs>
+    <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="120">
+      <stop offset="0.3" style="stop-color: var(--color-poster-yellow)"></stop>
+      <stop offset="0.3" style="stop-color: var(--color-hot-pink)"></stop>
+    </linearGradient>
+  </defs>
+  <path
+    d="M0 84H500C520 84 528 80 536 72L552 10L572 108C580 116 600 110 640 96C672 86 700 84 740 84H1200"
+    stroke={`url(#${gradientId})`}
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    vector-effect="non-scaling-stroke"></path>
+</svg>
