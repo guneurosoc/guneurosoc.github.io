@@ -33,6 +33,16 @@
   font-style: italic;
   font-display: swap;
 }
+/* Same file as Poppins 400, under its own name so `italic` slants the regular weight
+   instead of picking Poppins Bold Italic (used for the thin note under the join video). */
+@font-face {
+  font-family: "Poppins Note";
+  src: url("/fonts/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Archivo Black";
   src: url("/fonts/ArchivoBlack-Regular.woff2") format("woff2");
@@ -64,6 +74,7 @@
   --font-display: "Unbounded", "Archivo Black", system-ui, sans-serif;
   --font-text: "Poppins", system-ui, sans-serif;
   --font-display-alt: "Archivo Black", system-ui, sans-serif;
+  --font-note: "Poppins Note", system-ui, sans-serif;
   --font-sans: var(--font-text);
 
   /* Fluid type scale (DESIGN.md "Type") */

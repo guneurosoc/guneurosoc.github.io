@@ -46,9 +46,14 @@
 
   function hasWebGL2() {
     try {
-      const gl = document.createElement('canvas').getContext('webgl2');
-      gl?.getExtension('WEBGL_lose_context')?.loseContext();
-      return !!gl;
+      // failIfMajorPerformanceCaveat: no context when WebGL is software-rendered (no GPU), which would jam the main thread.
+      const gl = document.createElement('canvas').getContext('webgl2', { failIfMajorPerformanceCaveat: true });
+      if (!gl) return false;
+      // Chrome doesn't always flag its SwiftShader CPU renderer as a caveat, so check the renderer name too.
+      const info = gl.getExtension('WEBGL_debug_renderer_info');
+      const renderer = String(gl.getParameter(info ? info.UNMASKED_RENDERER_WEBGL : gl.RENDERER));
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      return !/swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer);
     } catch {
       return false;
     }

@@ -17,7 +17,6 @@ Build orchestrated by the lead session (Claude Fable 5.1); all site work done by
 | Placeholder | Where | Needed from the committee |
 |---|---|---|
 | `{{GITHUB_ORG}}` | `site.config.ts` (all absolute URLs, appears lowercased as `{{github_org}}` in built URLs) | GitHub organisation name |
-| `{{PRICE}}` | Join | Standard membership price (video shows £0.00 / "it's free") |
 | `{{MS_FORMS_URL}}`, `{{CHAT_URL}}` | Join | mailing-list and group-chat links |
 | `{{VP_EMAIL}}` | Complaints | Vice-President's email |
 | `{{WELFARE_EMAIL}}` | Contact | Welfare Officer contact |
@@ -31,7 +30,25 @@ Build orchestrated by the lead session (Claude Fable 5.1); all site work done by
 
 ## 3. Lighthouse scores
 
-**NOT RUN.** qa-auditor installed Playwright Chromium 153 and its missing libraries into the scratch directory, but Chromium cannot open sockets inside the Bash sandbox (`socket() failed: Operation not permitted`) and the sandbox-off retry was denied at the permission gate. Screenshots and the keyboard test of nav and toggle are likewise not run. How to run them is in STATE.md under "Needs the user's eyes". Static proxies that did pass: one h1 per page, no skipped headings, alt on every image, accessible names on every link/button, skip link first, landmarks present, focus-visible rule in CSS, 44 px classes on all controls, CSP exact, all 16 external URLs return 200, all internal links resolve, html-validate: only `role="list"` warnings (deliberate Safari workaround) remain.
+Run 2026-09-29 (Lighthouse 13, mobile preset, headless Chrome 153, served locally with gzip like GitHub Pages).
+
+| Page | Perf | A11y | Best pr. | SEO | LCP | CLS |
+|---|---|---|---|---|---|---|
+| Home | 95 | 100 | 100 | 69 | 2.5 s | 0.033 |
+| About | 97 | 100 | 100 | 69 | 2.2 s | 0 |
+| Join | 95 | 100 | 100 | 69 | 2.6 s | 0 |
+| Committee | 97 | 100 | 100 | 69 | 2.2 s | 0.024 |
+| Contact | 97 | 100 | 100 | 69 | 2.2 s | 0.001 |
+| Code of Conduct | 97 | 100 | 100 | 69 | 2.2 s | 0.028 |
+| Complaints | 97 | 100 | 100 | 69 | 2.2 s | 0.002 |
+| Constitution | 97 | 100 | 100 | 69 | 2.3 s | 0 |
+| Privacy | 97 | 100 | 100 | 69 | 2.2 s | 0.024 |
+| Credits | 96 | 100 | 100 | 69 | 2.2 s | 0.072 |
+| 404 | 100 | 100 | 100 | 66 | 1.7 s | 0.027 |
+
+SEO fails only `is-crawlable`, which is preview mode's deliberate `noindex`; it clears when `PREVIEW` is set to false at launch. Headless Chrome has no GPU, so Home was measured with the static brain poster (software WebGL is now skipped); the 3D scene's cost on a real phone is **unverified**. Keyboard test passed: skip link first, visible focus on every stop, theme toggle and mobile menu work by keyboard, Escape closes the menu and returns focus. No console errors and no horizontal scroll on any page at 360 px in either theme.
+
+Fixes made during this run: long placeholders and URLs overflowed Committee and Credits at 360 px (now wrap); the logo link's visible text read "UofGNeuroscience Society" (space added); software-rendered WebGL froze the main thread (now gets the poster); the Join video poster is preloaded; six links site-wide had no space before them; below 400 px the menu button is icon-only so the logo fits.
 
 ## 4. Assets and licences (`brand/ASSETS.md`)
 
@@ -58,17 +75,17 @@ Rejected candidates (CC-BY-SA, NC, login-only, oversized, labelled teaching mode
 
 ## 7. Things that need the committee or the user
 
-1. Run Lighthouse, screenshots and the keyboard test (see STATE.md).
-2. The join video shows pre-2026 dates on screen ("Black History Month 2023", "expires on 31 Aug 2024") and an "(it's free)" overlay. Re-record, or accept the committee-supplied video as exempt from the "nothing dated before 2026" rule.
-3. Confirm the fonts (BRAND.md marks them PROPOSED).
+1. ~~Run Lighthouse, screenshots and the keyboard test~~ Done 2026-09-29 (§3). Still worth a look on a real phone for the 3D brain.
+2. The join video shows pre-2026 dates on screen ("Black History Month 2023", "expires on 31 Aug 2024"). Re-record, or accept the committee-supplied video as exempt from the "nothing dated before 2026" rule. Its "(it's free)" overlay is now corrected by an asterisked note under the video (2026-09-29): £1 Standard, £2 Associate, log in to the SRC website to buy.
+3. ~~Confirm the fonts~~ Confirmed by the committee 2026-09-29. Remove the PROPOSED label in BRAND.md (agents may not edit it).
 4. Supply every placeholder in §2 and the constitution file.
-5. Delete `.claude/skills/ui-ux-pro-max` by hand.
+5. ~~Delete `.claude/skills/ui-ux-pro-max`~~ Done 2026-09-29.
 6. First deploy: set Pages source to GitHub Actions; the workflow (`--ignore-scripts` install) has never run on GitHub.
 
 ## 8. Not verified
 
 - Anything requiring a browser: WebGL rendering, bloom, drag/firing, SplitText/DrawSVG/Lenis/magnetic/tilt behaviour, Lottie playback, theme toggle, drawer, no-JS fallback, video/captions playback, srcset selection, real contrast over composites, runtime network requests, mailto/clipboard on Contact.
-- Lighthouse scores (all pages), HTML validation by the W3C validator (no Java), Cloudflare `_headers` syntax, GitHub Actions workflow, `pnpm install` outside the sandbox (ffmpeg-static binary needed a manual curl here; pnpm 12 and corepack failed in the sandbox).
+- The 3D brain on a real GPU (Lighthouse ran without one). HTML validation by the W3C validator (no Java), Cloudflare `_headers` syntax, GitHub Actions workflow, `pnpm install` outside the sandbox (ffmpeg-static binary needed a manual curl here; pnpm 12 and corepack failed in the sandbox).
 - Whether the simplified brain model has holes/artefacts; whether the SVG poster matches the scene's first frame.
 - Whether the Sketchfab original and the NIH copy are byte-identical (matched by face/vertex counts only).
 - ffmpeg binary licence inside ffmpeg-static (dev only, not deployed).

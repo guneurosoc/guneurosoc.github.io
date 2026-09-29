@@ -10,10 +10,12 @@ const link = 'text-link underline underline-offset-4 hover:decoration-2';
   title="Join"
   description="How to join GU NeuroSoc: membership is bought on the Glasgow University SRC website in five steps. Open to all University of Glasgow students."
 >
+  <link slot="head" rel="preload" as="image" href="/video/how-to-join-poster.jpg" fetchpriority="high" />
   <div class="container-site section">
     <h1 class="headline text-h1 font-black">Join</h1>
     <p class="mt-6 max-w-prose text-lead">
-      Membership is bought on the SRC website. We never handle payment ourselves. It takes five steps:
+      Membership is bought on the SRC website, and you need to log in to the SRC website to buy it. We never handle
+      payment ourselves. It takes five steps:
     </p>
 
     <div class="mt-12 grid items-start gap-12 md:grid-cols-[20rem_1fr]">
@@ -32,13 +34,17 @@ const link = 'text-link underline underline-offset-4 hover:decoration-2';
             <source src="/video/how-to-join.mp4" type="video/mp4" />
             <track kind="captions" src="/video/how-to-join.vtt" srclang="en" label="English" default />
             <p class="p-4 text-text-on-dark">
-              Your browser can't play this video. The same five steps are listed on this page, or you can
+              Your browser can't play this video. The same five steps are listed on this page, or you can{' '}
               <a href="/video/how-to-join.mp4" class="underline underline-offset-4">download the video (MP4)</a>.
             </p>
           </video>
         </div>
         <figcaption class="mt-3 text-center text-sm text-text-muted">
           The committee's how-to-join video, with captions.
+          <span class="mt-2 block font-note text-xs italic">
+            *The video shows membership as free. Membership now costs £1 for Standard and £2 for Associate, and you
+            need to log in to the SRC website to buy it.
+          </span>
         </figcaption>
       </figure>
 
@@ -51,13 +57,16 @@ const link = 'text-link underline underline-offset-4 hover:decoration-2';
           </li>
           <li>Head to “Find a club or society”.</li>
           <li>Search “Neuroscience” and click on us.</li>
-          <li>Click “Add to Basket” for the Standard membership.</li>
+          <li>Click “Add to Basket” for the Standard membership (or Associate, if you're not a student).</li>
           <li>Go to your basket and proceed to checkout — and you're officially a member.</li>
         </ol>
 
         <p class="mt-8 flex items-center gap-2 text-lead">
           <Lottie src="noto-high-voltage.json" class="size-10" />
-          <span><strong class="font-semibold">Standard membership:</strong> {'{{PRICE}}'}</span>
+          <span>
+            <strong class="font-semibold">Standard membership:</strong> £1<br />
+            <strong class="font-semibold">Associate membership:</strong> £2
+          </span>
         </p>
 
         <p class="mt-8">
@@ -81,7 +90,7 @@ const link = 'text-link underline underline-offset-4 hover:decoration-2';
       </ul>
       <p class="mt-3 text-sm text-text-muted">Links to be confirmed by the committee.</p>
       <p class="mt-6 max-w-prose">
-        Events and updates are posted on Instagram:
+        Events and updates are posted on Instagram:{' '}
         <a href="https://instagram.com/guneurosci" rel="noopener" class={link}>@guneurosci</a>.
       </p>
     </section>

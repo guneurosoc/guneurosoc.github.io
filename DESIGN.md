@@ -237,3 +237,7 @@ For the committee to confirm and add to the guide.
 24. **Motion colour roles** as tabled above (pink divider stroke, lavender glow, pink firing pulses).
 25. **Favicons are the whole logo downscaled;** a text-free brain mark in /brand would allow a cleaner favicon (for the committee).
 26. **Lottie decorations use Animated Noto Emoji colours** (sparkles, high voltage), which are not the 14 brand colours. Recorded as an exception to "motion never adds an off-palette colour" for the committee to confirm or replace with brand-coloured animations.
+27. **Fonts confirmed by the committee (2026-09-29).** Unbounded, Poppins and Archivo Black are final. The PROPOSED label in BRAND.md should be removed by the committee.
+28. **Price note under the join video** is small muted italic with a leading asterisk. No light or regular-italic Poppins file is loaded, so the browser slants Poppins Regular.
+29. **Below 400 px the Menu button is icon-only** (the word stays for screen readers), and the header gap drops to 8 px, so the lock-up fits from 320 px up.
+30. **The 3D brain is skipped on software-rendered WebGL** (SwiftShader, llvmpipe and similar); those devices get the static poster.

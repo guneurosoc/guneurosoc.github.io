@@ -13,6 +13,7 @@ const props = Astro.props;
 <html lang="en">
   <head>
     <Head {...props} />
+    <slot name="head" />
   </head>
   <body class="flex min-h-dvh flex-col bg-bg text-text">
     <a

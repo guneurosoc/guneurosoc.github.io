@@ -29,7 +29,7 @@ const previous = await getCollection('previousCommittees');
       <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
         {
           committee.map(({ data }, i) => (
-            <li class="card flex flex-col gap-4">
+            <li class="card flex flex-col gap-4 wrap-anywhere">
               <figure class="flex items-center gap-4">
                 <CommitteeAvatar index={i} />
                 <figcaption class="text-sm text-text-muted">Placeholder avatar</figcaption>
