@@ -78,8 +78,8 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 - [ ] qa-auditor: accessibility pass — one h1 per page, focus rings, 44 px tap targets, alt text, colour never the only signal; keyboard test of nav and toggle
 - [ ] qa-auditor: visual pass (browser plugin if installed) in dark and light themes
 - [ ] Route each QA finding back to the owning subagent; re-run QA until clean
-- [ ] page-builder: `README.md` (edit committee JSON, add Instagram images via GitHub web UI, switch `PREVIEW` off), `HANDOVER.md`, `CONTRIBUTING.md`, PR template
-- [ ] page-builder: GitHub Actions deploy workflow on push to main (Pages source: GitHub Actions); no CNAME; `_headers` file for Cloudflare Pages portability
+- [x] page-builder: `README.md` (edit committee JSON, add Instagram images via GitHub web UI, switch `PREVIEW` off), `HANDOVER.md`, `CONTRIBUTING.md`, PR template
+- [x] page-builder: GitHub Actions deploy workflow on push to main (Pages source: GitHub Actions); no CNAME; `_headers` file for Cloudflare Pages portability
 - [ ] Commit phase 4
 
 ### Phase 5 — Final report

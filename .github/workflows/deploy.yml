@@ -1,0 +1,61 @@
+# Builds the site and publishes it to GitHub Pages on every push to main.
+#
+# One-time setup: repository Settings -> Pages -> Build and deployment -> Source must be
+# "GitHub Actions". No CNAME file is used: with an Actions deploy GitHub ignores it, so a custom
+# domain is set in Settings -> Pages -> Custom domain instead (see HANDOVER.md).
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+
+      # No version given: pnpm/action-setup reads "packageManager" from package.json.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # --ignore-scripts skips ffmpeg-static's install script, which downloads an ~80 MB ffmpeg
+      # binary that only `pnpm video:build` uses (ffmpeg-static has no "skip download" setting).
+      # The only other build script allowed (pnpm.onlyBuiltDependencies) is esbuild's
+      # postinstall, which is optional: esbuild finds its binary in the @esbuild/<platform>
+      # package without it.
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - run: pnpm astro check
+
+      - run: pnpm build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

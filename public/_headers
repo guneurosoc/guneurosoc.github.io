@@ -1,0 +1,23 @@
+# HTTP response headers for Cloudflare Pages, which reads this file.
+# GitHub Pages ignores it (and cannot set custom headers). The Content-Security-Policy is set by
+# a <meta> tag in every page (src/components/Head.astro), so it is not repeated here.
+# Only hashed (/_astro) and never-renamed (/fonts) files are immutable; assets and video keep
+# their names when replaced, so they get one day.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: DENY
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/video/*
+  Cache-Control: public, max-age=86400
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
