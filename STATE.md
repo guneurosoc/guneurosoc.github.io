@@ -8,13 +8,13 @@
 **Last updated:** 2026-09-29 (session restarted after crash; unattended run)
 **Status:** `IN_PROGRESS`
 
-**Working on:** Phase 2 wave B in flight (3 page-builders in parallel): B1 index+about+join, B2 committee+contact, B3 code-of-conduct+complaints+constitution+privacy+credits. Header/Footer/Base/global.css frozen. Last commit: shared classes.
+**Working on:** Phase 3 + 4 in parallel. motion-3d → src/components/fx/*, HomeHero, index/about/join edits, poster, global.css fx section (installs three/gsap/lenis/lottie-web). page-builder → README/HANDOVER/CONTRIBUTING/PR template/.github/workflows/deploy.yml/_headers (no installs, no src/). Phase 2 pages committed at d6589af; OG images still open (do with a later install-safe slot).
 
-**Last command run:** `pnpm astro check` → 0 errors; `pnpm build` → 2 pages; dist scripts: /theme.js, ld+json, Header bundle (CSP-safe)
+**Last command run:** `pnpm build` → 11 pages; all wave B pages verified and committed
 
-**Last known-good checkpoint:** wave A committed 0a6b48f, build clean, 2026-09-29 00:49
+**Last known-good checkpoint:** d6589af, 11 pages build clean, 2026-09-29 01:00
 
-**Next exact step:** verify the global.css follow-up (build, `.btn-primary`/`.card` in dist CSS, drawer visible in static HTML), commit, then launch wave B in parallel: B1 Home+About+Join (src/pages/index.astro, about.astro, join.astro + Hero/Aims/InstagramGrid components), B2 Committee+Contact (committee.astro, contact.astro + components), B3 code-of-conduct, complaints, constitution, privacy, credits (.astro). Each must read global.css for the shared classes and touch only its own files; Header/Footer/Base/global.css are frozen during wave B.
+**Next exact step:** verify motion-3d (build, gzip sizes per page ≤150 KB excl. brain chunk, poster exists, CSP unchanged) and the docs agent (workflow YAML valid, _headers present). Commit each. Then: OG images (page-builder, install allowed once motion is done), then qa-auditor.
 
 **Watch out for:** pnpm must run as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_* dirs pointed at $TMPDIR (corepack and pnpm 12 fail in the sandbox). `.claude/skills/ui-ux-pro-max` (catalog-only copy) still on disk; deletion was denied at the permission gate — user to remove by hand. ffmpeg not installed.
 
