@@ -7,7 +7,7 @@ server, database or hosting account to hand over beyond what is listed here.
 
 Do this at or straight after the AGM.
 
-- [ ] **GitHub organisation owners.** The organisation `{{GITHUB_ORG}}` must always have at least
+- [ ] **GitHub organisation owners.** The organisation `guneurosoc` must always have at least
       two owners, so the site is never locked to one person. At the AGM, add at least two incoming
       committee members as owners, then remove owners who are leaving (see below for where).
 - [ ] **Society email account** (neurosciencesoc@src.gla.ac.uk). Hand over access to the incoming
@@ -29,7 +29,7 @@ Do this at or straight after the AGM.
 - **Owners:** on GitHub, open the organisation → **Settings** → **People** (or the **People**
   tab), filter by role **Owner**. Change a member's role to Owner, or remove a leaver, from the
   menu next to their name. Keep at least two owners at all times.
-- **Pages:** in the repository `{{GITHUB_ORG}}/{{GITHUB_ORG}}.github.io`, **Settings** →
+- **Pages:** in the repository `guneurosoc/guneurosoc.github.io`, **Settings** →
   **Pages** → **Build and deployment** → **Source** must be **GitHub Actions**. The workflow in
   `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`.
 - **Branch protection (optional):** **Settings** → **Branches** → add a rule for `main` that
@@ -37,7 +37,7 @@ Do this at or straight after the AGM.
 
 ## Domain
 
-No domain has been bought yet; the site lives at `https://{{GITHUB_ORG}}.github.io`.
+No domain has been bought yet; the site lives at `https://guneurosoc.github.io`.
 
 When one is bought:
 

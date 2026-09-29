@@ -93,9 +93,8 @@ for exactly what that changes.
 
 ### (e) The site address: `site.config.ts`
 
-`SITE_URL` is currently `'https://{{GITHUB_ORG}}.github.io'`. Replace `{{GITHUB_ORG}}` with the
-real GitHub organisation name once it exists (the repository must be called
-`<org>/<org>.github.io`). If a custom domain is bought later, change `SITE_URL` to it; see
+`SITE_URL` is `'https://guneurosoc.github.io'`, served from the repository
+`guneurosoc/guneurosoc.github.io` (an organisation site must be called `<org>/<org>.github.io`). If a custom domain is bought later, change `SITE_URL` to it; see
 `HANDOVER.md`. `SITE_URL` is used for the sitemap, canonical links and share previews, so it must
 match the address the site is actually served from.
 

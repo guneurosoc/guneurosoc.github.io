@@ -40,7 +40,7 @@ SRC Complaints & Disciplinary Procedure (society copy): https://www.glasgowunisr
 SRC privacy policy: https://www.glasgowunisrc.org/privacy/
 Sister society (clinical neurology/neurosurgery, a different society): Glasgow Neuro, https://www.glasgowneuro.co.uk
 Footer line: "Affiliated to the Glasgow University Students' Representative Council".
-GitHub organisation that will host the site: {{GITHUB_ORG}} (the user supplies the name; use the placeholder until then).
+GitHub organisation that will host the site: guneurosoc (supplied by the user 2026-09-29).
 
 About copy (from the SRC page; may be reworded, not added to): open to all University of Glasgow students, whether studying neuroscience or just keenly interested; aims to raise awareness of current neuroscience research so members keep up with advances and breakthroughs; meet like-minded people and make lifelong friends at all levels of the university; regular social events — pub quizzes, game nights, weekly catch-ups, assignment help, exam revision and more.
 
@@ -100,7 +100,7 @@ Every effect respects prefers-reduced-motion, pauses offscreen and when the tab 
 </motion>
 
 <technical>
-Astro (static output), TypeScript, Tailwind v4 wired to the tokens, pnpm, Node LTS. Hosting: GitHub Pages, as an organisation site. The repository will be `{{GITHUB_ORG}}/{{GITHUB_ORG}}.github.io`, so the site is served from the root of `https://{{GITHUB_ORG}}.github.io` with no sub-path; set Astro `site` from a single config value (`SITE_URL`) and keep `base` as `/`, so moving to a custom domain later means changing only that value. Deploy with a GitHub Actions workflow on push to main (Settings → Pages → Source: GitHub Actions). With an Actions workflow GitHub ignores CNAME files, so don't add one; the custom domain is set in the repository's Pages settings when it's bought. Also add a `_headers` file so the site could move to Cloudflare Pages unchanged.
+Astro (static output), TypeScript, Tailwind v4 wired to the tokens, pnpm, Node LTS. Hosting: GitHub Pages, as an organisation site. The repository will be `guneurosoc/guneurosoc.github.io`, so the site is served from the root of `https://guneurosoc.github.io` with no sub-path; set Astro `site` from a single config value (`SITE_URL`) and keep `base` as `/`, so moving to a custom domain later means changing only that value. Deploy with a GitHub Actions workflow on push to main (Settings → Pages → Source: GitHub Actions). With an Actions workflow GitHub ignores CNAME files, so don't add one; the custom domain is set in the repository's Pages settings when it's bought. Also add a `_headers` file so the site could move to Cloudflare Pages unchanged.
 
 Preview mode: until the committee launches the site, it is public but unfinished. A single config flag `PREVIEW` (default true) adds a slim banner on every page ("Preview — this site isn't launched yet"), a `<meta name="robots" content="noindex">` tag, and a robots.txt that disallows all crawling. Setting `PREVIEW` to false removes all three. Document this in README.md.
 

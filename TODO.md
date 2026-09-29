@@ -2,7 +2,6 @@
 
 Placeholders and things the committee must supply.
 
-- `{{GITHUB_ORG}}`: the GitHub organisation name that will host the site (`{{GITHUB_ORG}}/{{GITHUB_ORG}}.github.io`). Used in `site.config.ts` (`SITE_URL`).
 - `{{DOMAIN_REGISTRAR}}`, `{{DOMAIN_RENEWAL_DATE}}`: only once a custom domain is bought (`HANDOVER.md`, "Domain"). Not needed before then.
 - source logo file (the original Canva/vector design; only the 375×375 PNG exists)
 - Committee 2026/27 (`src/content/committee.json`), one placeholder per field:

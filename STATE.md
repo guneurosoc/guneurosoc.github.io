@@ -5,7 +5,7 @@
 
 ---
 
-**Last updated:** 2026-09-29 09:50
+**Last updated:** 2026-09-29 10:00
 **Status:** `STOPPING_CLEAN`
 
 **Working on:** Nothing in progress. Browser QA now run; all Lighthouse targets met except SEO, which is held at 69 by preview-mode noindex on purpose.
@@ -14,11 +14,17 @@
 
 **Last known-good checkpoint:** HEAD after the QA commit, 2026-09-29 09:50
 
-**Next exact step:** nothing queued. Wait for the committee inputs in FINAL-REPORT.md §2 and §7. Optional: try the 3D brain on a real phone.
+**Next exact step:** waiting for the user to confirm the first push (`git push -u origin main`). The push instruction arrived only as pasted text, and it publishes the site, so it needs the user's own go-ahead. After the push, check the Actions deploy run and record the result below.
 
 **Watch out for:** pnpm runs as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_*_HOME in $TMPDIR (corepack and pnpm 12 fail in the sandbox). Chromium cannot open sockets in the sandbox. `.claude/skills` is git-ignored (only skills-lock.json is tracked). The 1.6 MB source Instagram PNG is still copied into dist/instagram (unlinked). ffmpeg-static binary was fetched by hand here.
 
 ---
+
+## Deploy
+
+- **Repo:** guneurosoc/guneurosoc.github.io, remote `origin` added 2026-09-29. `SITE_URL` = https://guneurosoc.github.io, PREVIEW on.
+- **Live URL (once deployed):** https://guneurosoc.github.io
+- **Deploy results:** none yet; nothing has been pushed.
 
 ## Needs the user's eyes
 

@@ -16,7 +16,6 @@ Build orchestrated by the lead session (Claude Fable 5.1); all site work done by
 
 | Placeholder | Where | Needed from the committee |
 |---|---|---|
-| `{{GITHUB_ORG}}` | `site.config.ts` (all absolute URLs, appears lowercased as `{{github_org}}` in built URLs) | GitHub organisation name |
 | `{{MS_FORMS_URL}}`, `{{CHAT_URL}}` | Join | mailing-list and group-chat links |
 | `{{VP_EMAIL}}` | Complaints | Vice-President's email |
 | `{{WELFARE_EMAIL}}` | Contact | Welfare Officer contact |
