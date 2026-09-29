@@ -8,7 +8,7 @@
 **Last updated:** 2026-09-29 (session restarted after crash; unattended run)
 **Status:** `IN_PROGRESS`
 
-**Working on:** Phase 3 + 4 in parallel. motion-3d → src/components/fx/*, HomeHero, index/about/join edits, poster, global.css fx section (installs three/gsap/lenis/lottie-web). page-builder → README/HANDOVER/CONTRIBUTING/PR template/.github/workflows/deploy.yml/_headers (no installs, no src/). Phase 2 pages committed at d6589af; OG images still open (do with a later install-safe slot).
+**Working on:** Phase 3 committed. In flight: motion-3d follow-ups (magnetic on .btn-primary-on-band, saveData keeps poster); page-builder OG images (installs satori/resvg or similar, edits Head.astro + new endpoint). Then qa-auditor.
 
 **Last command run:** `pnpm build` → 11 pages; all wave B pages verified and committed
 
