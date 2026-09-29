@@ -5,8 +5,8 @@
 
 ---
 
-**Last updated:** 2026-09-29 10:32
-**Status:** `BLOCKED_ON_USER`
+**Last updated:** 2026-09-29 10:50
+**Status:** `STOPPING_CLEAN`
 
 **Working on:** Nothing in progress. Browser QA now run; all Lighthouse targets met except SEO, which is held at 69 by preview-mode noindex on purpose.
 
@@ -14,7 +14,7 @@
 
 **Last known-good checkpoint:** HEAD after the QA commit, 2026-09-29 09:50
 
-**Next exact step:** once the user has given the GitHub token the `workflow` permission, run `git push -u origin main` (outside the sandbox: the credential helper needs its lock file), then check the Actions deploy run and record it under Deploy.
+**Next exact step:** nothing queued. Wait for committee inputs (FINAL-REPORT.md §2, §7). Every push to main deploys; check the run with /tmp/claude-1000/gh-api.sh or the Actions page. Pushes and API calls need the sandbox off (credential helper lock file).
 
 **Watch out for:** pnpm runs as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_*_HOME in $TMPDIR (corepack and pnpm 12 fail in the sandbox). Chromium cannot open sockets in the sandbox. `.claude/skills` is git-ignored (only skills-lock.json is tracked). The 1.6 MB source Instagram PNG is still copied into dist/instagram (unlinked). ffmpeg-static binary was fetched by hand here.
 
@@ -23,10 +23,11 @@
 ## Deploy
 
 - **Repo:** guneurosoc/guneurosoc.github.io, remote `origin` added 2026-09-29. `SITE_URL` = https://guneurosoc.github.io, PREVIEW on.
-- **Live URL (once deployed):** https://guneurosoc.github.io
+- **Live URL:** https://guneurosoc.github.io (live, preview banner + noindex + robots disallow-all confirmed)
 - **Deploy results:**
   - 2026-09-29 10:10 push REJECTED by GitHub: "refusing to allow a Personal Access Token to create or update workflow `.github/workflows/deploy.yml` without `workflow` scope". Nothing reached GitHub, so no deploy ran. The user needs to add the workflow permission to the token.
   - 2026-09-29 10:30 second push REJECTED with the same error. The token sent still lacks workflow permission. Side effect: git's credential "approve" step rewrote both stores at 10:30, so the token is now also in ~/.git-credentials (global `store` helper in ~/.gitconfig). Not read; user told.
+  - 2026-09-29 10:45 user supplied a new token with repo + workflow scopes; both credential stores updated. Push of 7716781 OK. Run 36550357426 (build + deploy) **success**: https://github.com/guneurosoc/guneurosoc.github.io/actions/runs/36550357426. /, /join/, /robots.txt return 200.
 
 ## Needs the user's eyes
 
