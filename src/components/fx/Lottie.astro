@@ -5,18 +5,16 @@
 interface Props {
   /** File in public/assets/lottie/ (only files listed in brand/ASSETS.md). */
   src: 'noto-sparkles.json' | 'noto-high-voltage.json';
-  /** Box size in px. */
-  size?: number;
+  /** Tailwind classes; include a size utility (e.g. `size-14`). Defaults to `size-12` (48px). */
   class?: string;
 }
-const { src, size = 48, class: className } = Astro.props;
+const { src, class: className = 'size-12' } = Astro.props;
 ---
 
 <span
   data-fx-lottie={`/assets/lottie/${src}`}
   aria-hidden="true"
-  class:list={['inline-block shrink-0 align-middle', className]}
-  style={`width:${size}px;height:${size}px`}></span>
+  class:list={['inline-block shrink-0 align-middle', className]}></span>
 
 <script>
   import type { AnimationItem } from 'lottie-web';

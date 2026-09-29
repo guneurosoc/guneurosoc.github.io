@@ -1,7 +1,6 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
-import { imageMetadata } from 'astro/assets/utils';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import HomeHero from '../components/HomeHero.astro';
 import ActionPotential from '../components/fx/ActionPotential.astro';
@@ -27,16 +26,15 @@ const aims = [
 ];
 
 // Static Instagram images, read at build time. Filename pattern: <slug>-YYYY-MM-DD.<ext>
-const igDir = path.join(process.cwd(), 'public/instagram');
-const igFiles = fs
-  .readdirSync(igDir)
-  .filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))
-  .sort()
-  .reverse();
-const posts = await Promise.all(
-  igFiles.map(async (file) => {
-    const { width, height } = await imageMetadata(fs.readFileSync(path.join(igDir, file)), file);
-    const m = file.match(/^(?:(.+?)-)?(\d{4})-(\d{2})-(\d{2})\.\w+$/);
+// Globbed so astro:assets resizes and converts them (the committee uploads into public/instagram).
+const igImages = import.meta.glob<ImageMetadata>('/public/instagram/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
+const posts = Object.entries(igImages)
+  .sort(([a], [b]) => b.localeCompare(a))
+  .map(([file, src]) => {
+    const m = file.split('/').pop()!.match(/^(?:(.+?)-)?(\d{4})-(\d{2})-(\d{2})\.\w+$/);
     let alt = 'Instagram post from @guneurosci';
     if (m) {
       const date = new Date(Date.UTC(+m[2], +m[3] - 1, +m[4])).toLocaleDateString('en-GB', {
@@ -47,9 +45,8 @@ const posts = await Promise.all(
       });
       alt += m[1] ? `: ${m[1].replace(/-/g, ' ')}, ${date}` : `, ${date}`;
     }
-    return { src: `/instagram/${file}`, width, height, alt };
-  }),
-);
+    return { src, alt };
+  });
 ---
 
 <Base description="Glasgow University Neuroscience Society (GU NeuroSoc): open to all University of Glasgow students, whether studying neuroscience or just keenly interested. Membership is bought on the SRC website.">
@@ -85,11 +82,12 @@ const posts = await Promise.all(
           posts.map((post) => (
             <li>
               <a href="https://instagram.com/guneurosci" rel="noopener" class="block rounded-card">
-                <img
+                <Image
                   src={post.src}
-                  width={post.width}
-                  height={post.height}
                   alt={post.alt}
+                  widths={[400, 800]}
+                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                  format="webp"
                   loading="lazy"
                   decoding="async"
                   class="h-auto w-full rounded-card border border-border"
@@ -106,7 +104,7 @@ const posts = await Promise.all(
     <div class="container-site">
       <div class="flex items-center gap-3">
         <h2 id="join-band-title" class="headline text-h2 font-extrabold">Become a member</h2>
-        <Lottie src="noto-sparkles.json" size={56} />
+        <Lottie src="noto-sparkles.json" class="size-14" />
       </div>
       <p class="mt-4 max-w-prose text-lead">
         Membership is bought on the SRC website in five quick steps. We'll walk you through them.

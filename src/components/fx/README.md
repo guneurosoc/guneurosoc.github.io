@@ -176,7 +176,7 @@ File: `src/styles/global.css`, "fx" section at the bottom. CSS only.
 
 ## 8. Lottie decorations
 
-File: `Lottie.astro`. Props: `src`, `size`.
+File: `Lottie.astro`. Props: `src`, `class` (box size via a Tailwind size utility, e.g. `size-14`; default `size-12`, 48px).
 
 - Renders an empty `aria-hidden` box. When it comes within `NEAR_MARGIN`, `lottie-web/build/player/lottie_light`
   is imported and plays `/assets/lottie/<src>` (SVG renderer, looping).
@@ -192,7 +192,7 @@ Used in two places:
 - `noto-sparkles.json` at 56 px, next to the "Become a member" band headline on Home.
 - `noto-high-voltage.json` at 40 px, beside "Standard membership" on Join.
 
-`noto-brain.json` is not used. The 3D brain is already the page's mascot, and a second, cartoon brain would
+`noto-brain.json` was downloaded but is not used and has been removed from `public/` (record kept in brand/ASSETS.md). The 3D brain is already the page's mascot, and a second, cartoon brain would
 compete with it. It is also the largest of the three files (115,765 bytes).
 
 ## Bundle sizes (measured 2026-09-29, `pnpm build`, `gzip -c | wc -c`)
