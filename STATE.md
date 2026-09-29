@@ -8,13 +8,13 @@
 **Last updated:** 2026-09-29 (session restarted after crash; unattended run)
 **Status:** `IN_PROGRESS`
 
-**Working on:** Phase 3 committed. In flight: motion-3d follow-ups (magnetic on .btn-primary-on-band, saveData keeps poster); page-builder OG images (installs satori/resvg or similar, edits Head.astro + new endpoint). Then qa-auditor.
+**Working on:** Phase 4 QA: qa-auditor running build checks, HTML validation, links, CSP, placeholder/facts audit, Lighthouse if a browser can be installed. Phases 1–3 committed.
 
 **Last command run:** `pnpm build` → 11 pages; all wave B pages verified and committed
 
 **Last known-good checkpoint:** d6589af, 11 pages build clean, 2026-09-29 01:00
 
-**Next exact step:** verify motion-3d (build, gzip sizes per page ≤150 KB excl. brain chunk, poster exists, CSP unchanged) and the docs agent (workflow YAML valid, _headers present). Commit each. Then: OG images (page-builder, install allowed once motion is done), then qa-auditor.
+**Next exact step:** read the QA report, route each finding to page-builder / motion-3d / brand-designer, re-run QA, commit phase 4, then write the phase-5 final report (STATE.md "Needs the user's eyes" + FINAL-REPORT.md).
 
 **Watch out for:** pnpm must run as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_* dirs pointed at $TMPDIR (corepack and pnpm 12 fail in the sandbox). `.claude/skills/ui-ux-pro-max` (catalog-only copy) still on disk; deletion was denied at the permission gate — user to remove by hand. ffmpeg not installed.
 
