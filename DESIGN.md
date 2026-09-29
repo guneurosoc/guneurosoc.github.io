@@ -241,3 +241,7 @@ For the committee to confirm and add to the guide.
 28. **Price note under the join video** is small muted italic with a leading asterisk. No light or regular-italic Poppins file is loaded, so the browser slants Poppins Regular.
 29. **Below 400 px the Menu button is icon-only** (the word stays for screen readers), and the header gap drops to 8 px, so the lock-up fits from 320 px up.
 30. **The 3D brain is skipped on software-rendered WebGL** (SwiftShader, llvmpipe and similar); those devices get the static poster.
+31. **The 3D brain surface is indigo with a navy glow, not black** (user feedback 2026-09-29: black looked dull). The static poster silhouette matches.
+32. **No card behind the brain and no bloom pass.** The brain floats on a soft lavender glow that fades before the edges. Bloom softened edges and showed a faint rectangle on the light theme.
+33. **The hero headline is capped at 12.5% of its column width,** and the text column is 3fr to the brain's 2fr, so "NeuroSoc" never runs under the brain.
+34. **The action-potential divider also appears on Join, Committee and Contact,** between the main sections.

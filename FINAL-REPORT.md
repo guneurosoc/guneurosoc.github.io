@@ -20,8 +20,8 @@ Build orchestrated by the lead session (Claude Fable 5.1); all site work done by
 | `{{VP_EMAIL}}` | Complaints | Vice-President's email |
 | `{{WELFARE_EMAIL}}` | Contact | Welfare Officer contact |
 | `{{CONSTITUTION_DOWNLOAD}}` | Constitution | the constitution file in `/content` (renderer not built; fallback page shows adoption date 14 August 2026) |
-| `{{PRESIDENT_COURSE_YEAR}}`, `{{PRESIDENT_ASK_ME_ABOUT}}` | Committee | President's course/year, "ask me about" |
-| `{{<ROLE>_NAME}}`, `{{<ROLE>_COURSE_YEAR}}`, `{{<ROLE>_ASK_ME_ABOUT}}` for VICE_PRESIDENT, TREASURER, SECRETARY, ACADEMIC_EVENTS_COORDINATOR, WELFARE_OFFICER | Committee (`src/content/committee.json`) | 15 fields |
+| `{{PRESIDENT_ASK_ME_ABOUT}}`, `{{VICE_PRESIDENT_ASK_ME_ABOUT}}` | Committee | "ask me about" for President and Vice-President |
+| `{{<ROLE>_NAME}}`, `{{<ROLE>_YEAR}}`, `{{<ROLE>_ASK_ME_ABOUT}}` for TREASURER, SECRETARY, ACADEMIC_EVENTS_COORDINATOR, WELFARE_OFFICER | Committee (`src/content/committee.json`) | 12 fields |
 | `{{DOMAIN_REGISTRAR}}`, `{{DOMAIN_RENEWAL_DATE}}` | HANDOVER.md | once a domain is bought |
 | "source logo file" | TODO.md | the original vector/Canva logo (only a 375×375 PNG exists) |
 

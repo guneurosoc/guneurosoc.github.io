@@ -11,7 +11,7 @@ const roles = [
   'Welfare Officer',
 ] as const;
 
-// src/content/committee.json: an array of { role, name, courseYear, askMeAbout }, one per role.
+// src/content/committee.json: an array of { role, name, year, askMeAbout }, one per role.
 // Entry ids are derived from the role (e.g. "vice-president"), so the JSON needs no id field.
 const committee = defineCollection({
   loader: file('src/content/committee.json', {
@@ -24,7 +24,7 @@ const committee = defineCollection({
   schema: z.object({
     role: z.enum(roles),
     name: z.string(),
-    courseYear: z.string(),
+    year: z.string(),
     askMeAbout: z.string(),
   }),
 });

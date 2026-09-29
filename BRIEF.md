@@ -77,7 +77,7 @@ About: the four aims in warm plain language; who can join (full vs associate); t
 
 Join: the self-hosted video (web-optimised MP4 ≤ 2 MB plus WebM, poster frame, `<video controls playsinline preload="none">`, shown in a portrait phone-shaped frame, captions `.vtt` written from the five on-screen steps); the same five steps as text beside it; a big button to the SRC page; price {{PRICE}}; the associate-membership note; mailing list button → {{MS_FORMS_URL}}; group chat → {{CHAT_URL}}. The page must work fully without the video.
 
-Committee: cards for the six roles (name, course/year and "ask me about…" as placeholders, except the President's name), neuron-style SVG avatars as placeholders; a "Previous committees" section fed from `src/content/previous-committees.json` (seed it with the schema and no entries); a "Join the committee" explainer from the governance facts.
+Committee: cards for the six roles (name, year and "ask me about…" as placeholders, except the President's and Vice-President's name and year), neuron-style SVG avatars as placeholders; a "Previous committees" section fed from `src/content/previous-committees.json` (seed it with the schema and no entries); a "Join the committee" explainer from the governance facts.
 
 Contact: a topic select (General, Events, Sponsorship & collabs, Welfare, Complaint) that builds a `mailto:neurosciencesoc@src.gla.ac.uk` link with subject and body; a "Copy email" button; an "Open in Outlook on the web" link using `https://outlook.office.com/mail/deeplink/compose?to=…&subject=…` only if it is tested and works; social links; Welfare Officer line {{WELFARE_EMAIL}}. No map embed.
 

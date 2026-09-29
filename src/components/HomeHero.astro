@@ -4,11 +4,11 @@ import BrainHero from './fx/BrainHero.astro';
 ---
 
 <section aria-labelledby="hero-title" class="relative">
-  <div class="container-site grid items-center gap-10 py-12 md:grid-cols-2 md:py-20">
-    <div>
+  <div class="container-site grid items-center gap-10 py-12 md:grid-cols-[3fr_2fr] md:py-20">
+    <div class="hero-text">
       <h1 id="hero-title">
         <span class="block text-lead font-semibold text-text-muted">Glasgow University Neuroscience Society</span>
-        <span class="headline mt-3 block text-hero font-black" data-fx-split>GU NeuroSoc</span>
+        <span class="hero-title headline mt-3 block text-hero font-black" data-fx-split>GU NeuroSoc</span>
       </h1>
       <p class="mt-6 max-w-prose text-lead">
         Open to all University of Glasgow students, whether you study neuroscience or are just keenly interested.
@@ -24,7 +24,7 @@ import BrainHero from './fx/BrainHero.astro';
       id="brain-hero"
       data-brain-hero
       aria-hidden="true"
-      class="brain-glow relative aspect-square w-full overflow-hidden rounded-card border border-border bg-surface md:aspect-[4/3]"
+      class="brain-glow relative aspect-square w-full overflow-hidden"
     >
       <BrainHero />
     </div>
@@ -33,9 +33,17 @@ import BrainHero from './fx/BrainHero.astro';
 </section>
 
 <style>
+  /* "NeuroSoc" is about 7.3em wide: cap it at 12.5% of its column so it never runs under the brain. */
+  .hero-text {
+    container-type: inline-size;
+  }
+  .hero-title {
+    font-size: min(var(--text-hero), 12.5cqi);
+  }
+  /* No card behind the brain: a soft glow that fades to nothing before the edges. */
   .brain-glow {
     background-image: radial-gradient(
-      circle at 50% 50%,
+      closest-side circle at 50% 50%,
       color-mix(in srgb, var(--glow) 28%, transparent),
       transparent 65%
     );

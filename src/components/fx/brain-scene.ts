@@ -25,7 +25,6 @@ import {
 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
-import type { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 
 // ---- Tuning constants (documented in README.md) ----
 const MODEL_URL = '/assets/models/brain.glb';
@@ -44,8 +43,9 @@ const LINK_OPACITY = 0.35;
 // Node and link colours: tokens.css --color-hot-pink, --color-electric-blue, --color-sky, --color-deep-violet.
 const NODE_COLOURS = [0xfe67c6, 0x4f6ffe, 0x8ad2fe, 0x5d16e9];
 const FIRE_COLOUR = 0xfe67c6; // DESIGN.md §5: firing pulses are hot pink
-const SURFACE_COLOUR = 0x000000; // tokens.css --color-black
-const SURFACE_ROUGHNESS = 0.38;
+const SURFACE_COLOUR = 0x543fca; // tokens.css --color-indigo (black read as a dull silhouette)
+const SURFACE_EMISSIVE = 0x241d52; // tokens.css --color-navy, lifts the shadowed side
+const SURFACE_ROUGHNESS = 0.5;
 const FIRE_GAP_MIN = 0.4; // s between firing events: at most 2.5/s, under WCAG 2.3.1's 3 flashes/s
 const FIRE_GAP_MAX = 1.1;
 const FIRE_DECAY = 0.35; // s for a pulse to fade
@@ -58,8 +58,6 @@ const START_ROTATION = { x: 0.12, y: Math.PI / 2 - 0.35 }; // three-quarter view
 const FOV = 30;
 const FIT = 2.4; // model units that must fit in the shorter canvas side
 const MAX_DPR = 2;
-const BLOOM = { strength: 0.55, radius: 0.35, threshold: 0.12 };
-const BLOOM_MIN_WIDTH = 768; // no composer below this width or above DPR 2
 
 function mulberry32(seed: number) {
   return () => {
@@ -128,7 +126,7 @@ export async function mount(el: HTMLElement): Promise<() => void> {
 
   // ---- Model: black glossy surface, vertex colours dropped, centred and scaled to ~2 units long ----
   const model = gltf.scene;
-  const surface = new MeshStandardMaterial({ color: SURFACE_COLOUR, roughness: SURFACE_ROUGHNESS, metalness: 0 });
+  const surface = new MeshStandardMaterial({ color: SURFACE_COLOUR, emissive: SURFACE_EMISSIVE, roughness: SURFACE_ROUGHNESS, metalness: 0 });
   const meshes: Mesh[] = [];
   model.traverse((o) => {
     if (!(o instanceof Mesh)) return;
@@ -174,7 +172,7 @@ export async function mount(el: HTMLElement): Promise<() => void> {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
         float glow = smoothstep(0.5, 0.0, d) * 0.7 + smoothstep(0.2, 0.0, d);
-        gl_FragColor = vec4(vColor * glow * (0.9 + 1.6 * vFire), 1.0);
+        gl_FragColor = vec4(vColor * glow * (0.9 + 1.6 * vFire), min(glow, 1.0)); // alpha follows the glow: no dark specks on light backgrounds
         #include <colorspace_fragment>
       }`,
     transparent: true,
@@ -225,19 +223,8 @@ export async function mount(el: HTMLElement): Promise<() => void> {
   canvas.style.touchAction = 'pan-y'; // horizontal drag spins, vertical swipes still scroll the page
   canvas.style.cursor = 'grab';
 
-  let composer: EffectComposer | undefined;
-  if (window.devicePixelRatio <= MAX_DPR && window.innerWidth >= BLOOM_MIN_WIDTH) {
-    const [{ EffectComposer }, { RenderPass }, { UnrealBloomPass }, { OutputPass }] = await Promise.all([
-      import('three/addons/postprocessing/EffectComposer.js'),
-      import('three/addons/postprocessing/RenderPass.js'),
-      import('three/addons/postprocessing/UnrealBloomPass.js'),
-      import('three/addons/postprocessing/OutputPass.js'),
-    ]);
-    composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new UnrealBloomPass(new Vector2(1, 1), BLOOM.strength, BLOOM.radius, BLOOM.threshold));
-    composer.addPass(new OutputPass());
-  }
+  // No bloom pass: it bypassed the canvas antialiasing (soft edges) and its output showed as a faint
+  // rectangle on the light theme. Nodes carry their own soft glow in the node shader.
 
   const resize = () => {
     const w = el.clientWidth || 1;
@@ -247,11 +234,10 @@ export async function mount(el: HTMLElement): Promise<() => void> {
     camera.position.set(0, 0, FIT / (2 * halfTan * Math.min(1, camera.aspect)));
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
-    composer?.setSize(w, h);
     nodeMat.uniforms.uSize.value = NODE_SIZE * dpr;
     render();
   };
-  const render = () => (composer ? composer.render() : renderer.render(scene, camera));
+  const render = () => renderer.render(scene, camera);
 
   // ---- Interaction: drag to spin with inertia, pointer makes nearby nodes fire ----
   let dragging = false;
@@ -373,7 +359,6 @@ export async function mount(el: HTMLElement): Promise<() => void> {
         (o.material as Material).dispose();
       }
     });
-    composer?.dispose();
     renderer.dispose();
     canvas.remove();
     delete el.dataset.brainReady;

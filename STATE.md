@@ -5,10 +5,10 @@
 
 ---
 
-**Last updated:** 2026-09-29 10:50
+**Last updated:** 2026-09-29 11:05
 **Status:** `STOPPING_CLEAN`
 
-**Working on:** Nothing in progress. Browser QA now run; all Lighthouse targets met except SEO, which is held at 69 by preview-mode noindex on purpose.
+**Working on:** deploying the user's committee / home / brain-hero changes.
 
 **Last command run:** astro build → 11 pages; astro check + tsc 0 errors; Lighthouse/screenshot/keyboard QA via /tmp/claude-1000/qa/run.mjs (needs sandbox off)
 

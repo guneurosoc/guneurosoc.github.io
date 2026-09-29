@@ -36,7 +36,7 @@ whatever order they are in the file):
   {
     "role": "President",
     "name": "Full name",
-    "courseYear": "Course and year",
+    "year": "Year of study, e.g. 3",
     "askMeAbout": "One line on what to ask this person about"
   }
 ]
@@ -46,7 +46,7 @@ whatever order they are in the file):
   appears once:
   `President`, `Vice-President`, `Treasurer`, `Secretary`, `Academic Events Coordinator`,
   `Welfare Officer`.
-- `name`, `courseYear` and `askMeAbout` are free text.
+- `name`, `year` and `askMeAbout` are free text.
 - Any value that still looks like `{{SOMETHING}}` is a placeholder. Replace the whole thing,
   braces included, with the real text, and remove the matching line from `TODO.md`.
 

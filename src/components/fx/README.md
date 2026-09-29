@@ -40,10 +40,10 @@ Files: `BrainHero.astro` (poster + loader, eager), `brain-scene.ts` (lazy chunk)
 - Motion: idle spin at `IDLE_SPEED`. Dragging spins it (`DRAG_SPEED`; vertical tilt clamped to `TILT_LIMIT`),
   and a flick keeps it spinning while the speed decays by `INERTIA_DAMPING`. The canvas uses
   `touch-action: pan-y`, so vertical swipes still scroll the page on phones.
-- Bloom: `UnrealBloomPass` + `OutputPass` through `EffectComposer`, imported only when used. There is no
-  composer when `devicePixelRatio > 2` or the window is narrower than `BLOOM_MIN_WIDTH`. DPR is capped at `MAX_DPR`.
+- No bloom pass (removed 2026-09-29: it softened edges and showed a faint rectangle on the light theme).
+  The node shader draws each node's glow. DPR is capped at `MAX_DPR`.
 - The loop runs through `renderer.setAnimationLoop` and is set to `null` when the hero is offscreen or the tab
-  is hidden. A `ResizeObserver` handles resizes. Dispose frees geometries, materials, the composer and the
+  is hidden. A `ResizeObserver` handles resizes. Dispose frees geometries, materials, and the
   renderer, and removes the canvas.
 - A lost WebGL context disposes the scene, which brings the poster back. The canvas fades in over 250 ms once
   its first frame is drawn, and the poster fades out.
@@ -60,7 +60,7 @@ Files: `BrainHero.astro` (poster + loader, eager), `brain-scene.ts` (lazy chunk)
 | `LINK_MAX_DIST` / `LINK_MAX_PER_NODE` / `LINK_OPACITY` | 0.28 / 3 / 0.35 | brain-scene.ts |
 | `NODE_COLOURS` | `#FE67C6 #4F6FFE #8AD2FE #5D16E9` (tokens.css) | brain-scene.ts |
 | `FIRE_COLOUR` | `#FE67C6` hot pink | brain-scene.ts |
-| `SURFACE_COLOUR` / `SURFACE_ROUGHNESS` | `#000000` / 0.38 | brain-scene.ts |
+| `SURFACE_COLOUR` / `SURFACE_EMISSIVE` / `SURFACE_ROUGHNESS` | `#543FCA` indigo / `#241D52` navy / 0.5 | brain-scene.ts |
 | `FIRE_GAP_MIN` / `FIRE_GAP_MAX` / `FIRE_DECAY` | 0.4 s / 1.1 s / 0.35 s | brain-scene.ts |
 | `POINTER_RADIUS` | 0.3 model units | brain-scene.ts |
 | `IDLE_SPEED` | 0.15 rad/s | brain-scene.ts |
@@ -68,8 +68,6 @@ Files: `BrainHero.astro` (poster + loader, eager), `brain-scene.ts` (lazy chunk)
 | `START_ROTATION` | x 0.12, y π/2 − 0.35 (three-quarter view of the left hemisphere) | brain-scene.ts |
 | `FOV` / `FIT` | 30° / 2.4 units in the shorter canvas side | brain-scene.ts |
 | `MAX_DPR` | 2 | brain-scene.ts |
-| `BLOOM` | strength 0.55, radius 0.35, threshold 0.12 | brain-scene.ts |
-| `BLOOM_MIN_WIDTH` | 768 px | brain-scene.ts |
 
 ### Poster (`public/hero-poster.svg`, 1200×900, 14,703 bytes)
 
@@ -213,7 +211,6 @@ Lazy JS (loaded only when needed):
 |---|---|---|
 | `lottie_light` | 47,021 B | a Lottie box nears the viewport (Home, Join). Home total with it: 104,087 B |
 | `brain-scene` (three core, GLTFLoader, sampler, scene) | 155,430 B | brain hero, not reduced motion, WebGL2 |
-| Bloom set: EffectComposer 1,443 + UnrealBloomPass 2,493 + OutputPass 1,026 + RenderPass 442 + Pass 409 + CopyShader 300 | 6,113 B | only when bloom is on |
 
 Data loaded lazily:
 

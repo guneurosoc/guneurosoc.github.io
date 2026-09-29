@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import ActionPotential from '../components/fx/ActionPotential.astro';
 import CommitteeAvatar from '../components/CommitteeAvatar.astro';
 
 const order = [
@@ -38,7 +39,7 @@ const previous = await getCollection('previousCommittees');
                 <h3 class="font-display text-h3 font-extrabold">{data.role}</h3>
                 <p class="mt-1 font-semibold">{data.name}</p>
                 <p class="mt-3">
-                  <span class="text-text-muted">Course / year:</span> {data.courseYear}
+                  <span class="text-text-muted">Year:</span> {data.year}
                 </p>
                 <p class="mt-1">
                   <span class="text-text-muted">Ask me about:</span> {data.askMeAbout}
@@ -49,6 +50,8 @@ const previous = await getCollection('previousCommittees');
         }
       </ul>
     </section>
+
+    <div class="mt-16"><ActionPotential /></div>
 
     <section aria-labelledby="join-heading" class="prose-site mt-16">
       <h2 id="join-heading">Join the committee</h2>

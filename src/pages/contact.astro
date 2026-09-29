@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import ActionPotential from '../components/fx/ActionPotential.astro';
 
 const email = 'neurosciencesoc@src.gla.ac.uk';
 const topics = ['General enquiry', 'Events', 'Sponsorship & collabs', 'Welfare', 'Complaint'];
@@ -41,6 +42,8 @@ const socials = [
         <span id="copy-status" aria-live="polite" class="text-sm font-semibold"></span>
       </div>
     </section>
+
+    <div class="mt-16"><ActionPotential /></div>
 
     <section aria-labelledby="welfare-heading" class="mt-12">
       <h2 id="welfare-heading" class="font-display text-h2 font-extrabold uppercase">Welfare</h2>
