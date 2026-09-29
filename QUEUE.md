@@ -84,8 +84,8 @@ subagents in `.claude/agents/`; quote the relevant BRIEF.md sections in each del
 
 ### Phase 5 — Final report
 
-- [ ] Report to the user: every `{{PLACEHOLDER}}`, Lighthouse scores, the `ASSETS.md` licence table, which skills and plugins were actually used, everything that could not be verified, and any decisions made outside BRAND.md
-- [ ] Commit phase 5
+- [x] (FINAL-REPORT.md) Report to the user: every `{{PLACEHOLDER}}`, Lighthouse scores, the `ASSETS.md` licence table, which skills and plugins were actually used, everything that could not be verified, and any decisions made outside BRAND.md
+- [x] Commit phase 5
 
 ---
 

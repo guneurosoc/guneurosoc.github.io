@@ -5,18 +5,18 @@
 
 ---
 
-**Last updated:** 2026-09-29 (session restarted after crash; unattended run)
-**Status:** `IN_PROGRESS`
+**Last updated:** 2026-09-29 01:40
+**Status:** `STOPPING_CLEAN`
 
-**Working on:** Phase 4 QA fixes in flight: page-builder (credits libs, Instagram image via astro:assets, nav labels, 404 canonical, unused Lottie removal, avatar caption, logo-96/192) and motion-3d (Lottie inline styles). QA static pass otherwise clean (see CHANGELOG once committed).
+**Working on:** Nothing in progress. All five phases of BRIEF.md are done to the extent possible in this sandbox; FINAL-REPORT.md written. QUEUE.md is empty apart from the two NOT RUN QA items that need a browser.
 
-**Last command run:** `pnpm build` → 11 pages; all wave B pages verified and committed
+**Last command run:** `pnpm build` → 11 pages + 12 OG PNGs; `astro check` 0 errors; `tsc` clean; committed as phase 4/5
 
-**Last known-good checkpoint:** d6589af, 11 pages build clean, 2026-09-29 01:00
+**Last known-good checkpoint:** phase 5 commit (HEAD), build clean, 2026-09-29 01:40
 
-**Next exact step:** verify both fix reports (astro check, build, html-validate no unique-landmark, no noto-brain in dist, generated webp sizes), commit "Phase 4: QA fixes", then write FINAL-REPORT.md (phase 5) and finish STATE.md.
+**Next exact step:** nothing queued. If the user grants browser/socket access: re-run qa-auditor step 10 (Lighthouse on 11 routes, screenshots at 360/1280 in both themes, keyboard pass) and route findings to the owning subagent. Otherwise wait for the committee inputs listed in FINAL-REPORT.md §2 and §7.
 
-**Watch out for:** pnpm must run as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_* dirs pointed at $TMPDIR (corepack and pnpm 12 fail in the sandbox). `.claude/skills/ui-ux-pro-max` (catalog-only copy) still on disk; deletion was denied at the permission gate — user to remove by hand. ffmpeg not installed.
+**Watch out for:** pnpm runs as `npx -y pnpm@10.34.6` with npm_config_cache and XDG_*_HOME in $TMPDIR (corepack and pnpm 12 fail in the sandbox). Chromium cannot open sockets in the sandbox. `.claude/skills` is git-ignored (only skills-lock.json is tracked). The 1.6 MB source Instagram PNG is still copied into dist/instagram (unlinked). ffmpeg-static binary was fetched by hand here.
 
 ---
 
